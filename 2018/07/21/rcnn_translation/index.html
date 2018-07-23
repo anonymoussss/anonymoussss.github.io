@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014) | anonymous sss</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要　　过去几年，在权威数据集PASCAL上，物体检测的效果已经达到一个稳定水平。效果最好的方法是融合了多种图像低维特征和高维上下文环境的复杂结合系统。在这篇论文里，我们提出了一种简单并且可扩展的检测算法，可以将mAP在VOC2012最好结果的基础上提高30%以上——达到了53.3%。我们的方法结合了两个关键的因素：(1)将大型卷积神经网络(CNNs)应用于自下而上的候选区域以定位和分割物体。(2">
+<meta name="keywords" content="deep learning,translation">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)">
+<meta property="og:url" content="http://yoursite.com/2018/07/21/rcnn_translation/index.html">
+<meta property="og:site_name" content="anonymous sss">
+<meta property="og:description" content="摘要　　过去几年，在权威数据集PASCAL上，物体检测的效果已经达到一个稳定水平。效果最好的方法是融合了多种图像低维特征和高维上下文环境的复杂结合系统。在这篇论文里，我们提出了一种简单并且可扩展的检测算法，可以将mAP在VOC2012最好结果的基础上提高30%以上——达到了53.3%。我们的方法结合了两个关键的因素：(1)将大型卷积神经网络(CNNs)应用于自下而上的候选区域以定位和分割物体。(2">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/07/21/rcnn_translation/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/21/rcnn_translation/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/21/rcnn_translation/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/21/rcnn_translation/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/21/rcnn_translation/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/07/21/rcnn_translation/6.png">
+<meta property="og:updated_time" content="2018-07-23T19:27:23.176Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)">
+<meta name="twitter:description" content="摘要　　过去几年，在权威数据集PASCAL上，物体检测的效果已经达到一个稳定水平。效果最好的方法是融合了多种图像低维特征和高维上下文环境的复杂结合系统。在这篇论文里，我们提出了一种简单并且可扩展的检测算法，可以将mAP在VOC2012最好结果的基础上提高30%以上——达到了53.3%。我们的方法结合了两个关键的因素：(1)将大型卷积神经网络(CNNs)应用于自下而上的候选区域以定位和分割物体。(2">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/21/rcnn_translation/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="anonymous sss" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">anonymous sss</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-rcnn_translation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/21/rcnn_translation/" class="article-date">
+  <time datetime="2018-07-21T12:20:23.000Z" itemprop="datePublished">2018-07-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>　　过去几年，在权威数据集PASCAL上，物体检测的效果已经达到一个稳定水平。效果最好的方法是融合了多种图像低维特征和高维上下文环境的复杂结合系统。在这篇论文里，我们提出了一种简单并且可扩展的检测算法，可以将mAP在VOC2012最好结果的基础上提高30%以上——达到了53.3%。我们的方法结合了两个关键的因素：<br>(1)将大型卷积神经网络(CNNs)应用于自下而上的候选区域以定位和分割物体。<br>(2)当带标签的训练数据不足时，先针对辅助任务进行有监督预训练，再进行特定任务的调优，就可以产生明显的性能提升。<br>　　因为我们结合了CNNs和候选区域，该方法被称为R-CNN：Regions with CNN features。我们也把R-CNN效果跟OverFeat比较了下（OverFeat是最近提出的在与我们相似的CNN特征下采用滑动窗口进行目标检测的一种方法），结果发现RCNN在200类ILSVRC2013检测数据集上的性能明显优于OVerFeat。本文整个系统源码在：<a href="http://www.cs.berkeley.edu/˜rbg/rcnn。" target="_blank" rel="noopener">http://www.cs.berkeley.edu/˜rbg/rcnn。</a> （译者注：已失效，新地址：<a href="https://github.com/rbgirshick/rcnn）" target="_blank" rel="noopener">https://github.com/rbgirshick/rcnn）</a></p>
+<h2 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h2><p>　　特征很重要。在过去十年，各类视觉识别任务基本都建立在对SIFT[29]和HOG[7]特征的使用。但如果我们关注一下PASCAL VOC对象检测[15]这个经典的视觉识别任务，就会发现，2010-2012年进展缓慢，取得的微小进步都是通过构建一些集成系统和采用一些成功方法的变种才达到的。<br>　　SIFT和HOG是块方向直方图(blockwise orientation histograms)，一种类似大脑初级皮层V1层复杂细胞的表示方法。但我们知道识别发生在多个下游阶段，也就是说对于视觉识别更有价值的信息是层次化的，通过多个阶段来计算特征。<br>　　Fukushima的“neocognitron”[19]，一种受生物学启发用于模式识别的层次化、移动不变性模型，算是这方面最早的尝试。然而neocognitron缺乏监督学习算法。Rumelhart[33]，Lecun[26]等人的工作表明基于反向传播的随机梯度下降对训练卷积神经网络（CNNs）非常有效，CNNs被认为是继承自neocognitron的一类模型。<br>　　CNNs在1990年代被广泛使用[27]，但随即便因为SVM的崛起而淡出研究主流。2012年，Krizhevsky等人[25]在ImageNet大规模视觉识别挑战赛(ILSVRC)[9, 10]上的出色表现重新燃起了世界对CNNs的兴趣。他们的成功在于在120万的标签图像上使用了一个大型的CNN，并且对LeCUN的CNN进行了一些改造（比如ReLU和Dropout Regularization）。<br>　　这个ImangeNet的结果的重要性在ILSVRC2012 workshop上得到了热烈的讨论。可提炼出来的核心问题如下：ImageNet上的CNN分类结果在何种程度上能够应用到PASCAL VOC挑战的物体检测任务上？<br>　　我们填补了图像分类和物体检测之间的空白，回答了这个问题。本论文是第一个说明在PASCAL VOC的物体检测任务上CNN比基于简单类HOG特征的系统有大幅的性能提升。我们主要关注了两个问题：使用深度网络定位物体和在小规模的标注数据集上进行大型网络模型的训练。<br>与图像分类不同的是检测需要定位一个图像内的许多物体。一个方法是将框定位看做是回归问题。但和我们同时进行Szegedy等人的工作说明这种策略并不work（在VOC2007上他们的mAP是30.5%，而我们的达到了58.5%）。另一个办法就是创建滑窗检测器。CNNs已经被用于此种方式至少二十年了，主要在一些特定的物体类别上，如人脸[32, 40]，行人[35]。为了获得较高的空间分辨率，这些CNNs都采用了两个卷积层和两个池化层。我们也采纳了滑窗方法。但我们的网络层次更深，拥有5个卷积层，并有非常大的感受野（195×195）and strides（32×32），这使得在滑窗模式中做精确定位成为一项开放的技术挑战。<br>　　有一种已经成功用于物体检测[39]和语义分割[5]，操纵“对区域进行识别”的模式[21]，我们解决了CNN定位问题。测试时，我们的方法产生了接近2000个与类别独立的区域推荐，对每个推荐使用CNN抽取了一个固定长度的特征向量，然后借助专门针对特定类别数据的线性SVM对每个区域进行分类。通过简单的技术（仿射变换）从每个推荐区域计算出一个固定大小的CNN输入，从而支持各种区域尺寸。图1展示了我们方法的全貌并突出展示了一些实验结果。由于我们结合了Region proposals和CNNs，所以起名<strong>R-CNN：Regions with CNN features</strong>。<br><img src="/2018/07/21/rcnn_translation/1.png" alt="图１"></p>
+<h2 id="2、用R-CNN做物体检测"><a href="#2、用R-CNN做物体检测" class="headerlink" title="2、用R-CNN做物体检测"></a>2、用R-CNN做物体检测</h2><p>　　我们的物体检测系统有三个模块构成。第一个，产生类别无关的推荐区域。这些推荐定义了一个候选检测区域的集合；第二个是一个大型卷积神经网络，用于从每个区域抽取特定大小的特征向量；第三个是一个指定类别的线性SVM。本部分，将展示每个毛快的设计，并介绍他们的测试阶段的用法，以及参数是如何学习的细节，最后给出在PASCAL VOC 2010-12和ILSVRC2013上的检测结果。</p>
+<h3 id="2-1-模块设计"><a href="#2-1-模块设计" class="headerlink" title="2.1 模块设计"></a>2.1 模块设计</h3><p>　　<strong>区域推荐（Region Proposals）</strong>。近来有很多研究都提出了产生类别无关区域推荐的方法。比如物体性(objectness)[1]，选择性搜索[39]，类别无关物体推荐[14]，受限参最小剪切(constrained parametric min-cuts, CPMC)[5]，多尺度联合分组[3]，以及Ciresan等人的方法，将CNN用在规律空间块裁剪上以检测有丝分裂细胞，也算是一种特殊的区域推荐类型。由于R-CNN对特定区域算法是不关心的，所以我们采用了选择性搜索以方便和前任的工作[39, 41]进行可控的比较。<br>　　<strong>特征抽取</strong>。我们使用Krizhevsky等人[25]所描述的CNN的一个Caffe[24]实现版本对每个推荐区域抽取一个4096维度的特征向量。通过前向传播一个277×277大小的RGB图像到五个卷积层和两个全连接层来计算特征。读者可以参考[24, 25]获得更多的网络架构细节。为了计算推荐区域的特征，首先需要将输入的图像数据转变成CNN可以接受的方式（我们架构中的CNN只能接受固定大小的像素宽高比，为227 × 227）。这个变换有很多办法，我们使用了最简单的一种。无论候选区域是什么尺寸，我们都把环绕该区域的紧边框内的所有的像素变形到希望的尺寸。变形之前，先放大紧边框以便在新的变形后的尺寸上保证变形图像上下文的p的像素都围绕在原始框上（我们使用p=16）(译者注：翻译的不好，原文：Prior to warping, we dilate the tight bounding box so that at the warped size there are exactly p pixels of warped image context around the original box (we use p = 16))。图2展示了一些变形训练图像的例子。变形的候选方法可以参考附录A。<br><img src="/2018/07/21/rcnn_translation/2.png" alt="图2"></p>
+<h3 id="2-2-测试阶段的物体检测"><a href="#2-2-测试阶段的物体检测" class="headerlink" title="2.2 测试阶段的物体检测"></a>2.2 测试阶段的物体检测</h3><p>　　在测试阶段，在测试图像上使用选择性搜索抽取2000个推荐区域（实验中，我们使用了选择性搜索的快速模式）。然后变形每一个推荐区域，再通过CNN前向传播计算出特征。然后我们使用训练过的对应类别的SVM给整个特征向量中的每个类别单独打分。然后给出一张图像中所有的打分区域，然后使用贪婪非最大化抑制算法（每个类别是独立进行的），如果一个区域和那些大于学习阈值的高分且被选中的区域有交叉（ intersection-overunion(IoU) ）重叠的话，就会被拒绝。<br>　　<strong>运行时分析</strong>。两个特性让检测变得很高效。首先，所有的CNN参数都是跨类别共享的。其次，通过CNN计算的特征向量相比其他通用方法（比如spatial pyramids with bag-of-visual-word encodings）维度是很低的。由于UVA检测系统[39]的特征比我们的要多两个数量级(360k vs 4k)。<br>这种共享的结果就是计算推荐区域特征的耗时可以分摊到所有类别的头上（GPU：每张图13s，CPU：每张图53s）。唯一的和类别有关的计算都是特征和SVM权重以及最大化抑制之间的点积。实践中，所有的点积都可以批量化成一个单独矩阵间运算。特征矩阵的典型大小是2000×4096，SVM权重的矩阵是4096xN，其中N是类别的数量。<br>　　分析表明R-CNN可以扩展到上千个类别，而不需要诉诸近似技术（如hashing）。及时有10万个类别，导致的矩阵乘法在现代多核CPU上只想好10s而已。但这种高效不仅仅是因为使用了区域推荐和共享特征。由于较高维度的特征，UVA系统需要134GB的内存来存10万个预测因子，而我们只要1.5GB，比我们高了两个数量级。更有趣的是R-CCN和最近Dean等人关于可扩展检测机制的工作的对比，他们使用了 DPMs和散列[8]，用了1万个干扰类， 每五分钟可以处理一张图片，在VOC2007上的mAP能达到16%。我们的方法1万个检测器由于没有做近似，可以在CPU上一分钟跑完，达到59%的mAP（3.2节）。<br><img src="/2018/07/21/rcnn_translation/3.png" alt="图3"></p>
+<h3 id="2-3-训练"><a href="#2-3-训练" class="headerlink" title="2.3 训练"></a>2.3 训练</h3><p>　　<strong>有监督预训练</strong>。我们在大型辅助训练集ILSVRC2012分类数据集（没有约束框数据）上预训练了CNN。预训练采用了Caffe的CNN库[24]。简单地说，我们的CNN十分接近krizhevsky等人的网络的性能，在ILSVRC2012分类验证集（译者注：validation set，不是test set）在top-1错误率上比他们高2.2%。差异主要来自于训练过程的简化。<br>　　<strong>特定领域的参数调优</strong>。为了让我们的CNN适应新的任务（即检测任务）和新的领域（变形后的推荐窗口）。我们只使用变形后的推荐区域对CNN参数进行SGD训练。我们替掉了ImageNet专用的1000路分类层，换成了一个随机初始化的(N+1)路分类层，其中N是类别数，1代表背景，而卷积部分都没有改变。对于VOC，N=20，对于ILSVRC2013，N=200。我们对待所有的推荐区域，如果其和真实标注的框的IoU重叠&gt;= 0.5就认为是正例，否则就是负例。SGD开始的learning_rate为0.001（是初始化预训练时的十分之一），这使得调优得以有效进行而不会破坏初始化的成果。每轮SGD迭代，我们统一使用32个正例窗口（跨所有类别）和96个背景窗口，即每个mini-batch的大小是128。另外我们倾向于采样正例窗口，因为和背景相比他们很稀少。<br>　　<strong>目标种类分类器</strong>。思考一下检测汽车的二分类器。很显然，一个图像区域紧紧包裹着一辆汽车应该就是正例。相似的，背景区域应该看不到任何汽车，就是负例。较为不明晰的是怎样标注哪些只和汽车部分重叠的区域。我们使用IoU重叠阈值来解决这个问题，低于这个阈值的就是负例。这个阈值我们选择了0.3，是在验证集上基于{0, 0.1, … 0.5}通过网格搜索得到的。我们发现认真选择这个阈值很重要。如果设置为0.5，如[39]，可以提升mAP5个点，设置为0，就会降低4个点。正例就严格的是标注的框。<br>　　一旦特征提取出来，就应用标签数据，然后优化每个类的线性SVM。由于训练数据太大，难以装进内存，我们选择了标准的hard negative mining method（高难负例挖掘算法？用途就是正负例数量不均衡，而负例分散代表性又不够的问题）[17, 37]。 高难负例挖掘算法收敛很快，实践中只要经过一轮mAP就可以基本停止增加了。<br>　　附录B中，我们讨论了，正例和负例在调优和SVM训练两个阶段的为什么定义得如此不同。我们也会讨论训练检测SVM的平衡问题，而不只是简单地使用来自调优后的CNN的最终softmax层的输出。</p>
+<h3 id="2-4-PASCAL-VOC-2010-12结果"><a href="#2-4-PASCAL-VOC-2010-12结果" class="headerlink" title="2.4 PASCAL VOC 2010-12结果"></a>2.4 PASCAL VOC 2010-12结果</h3><p>　　按照PASCAL VOC的最佳实践步骤，我们在VOC2007的数据集上验证了我们所有的设计思想和参数处理，对于在2010-2012数据库中，我们在VOC2012上训练和优化了我们的支持向量机检测器，我们一种方法（带BBox和不带BBox）只提交了一次评估服务器<br>　　表1展示了（本方法）在VOC2010的结果，我们将自己的方法同四种先进基准方法作对比，其中包括SegDPM，这种方法将DPM检测子与语义分割系统相结合并且使用附加的内核的环境和图片检测器打分。更加恰当的比较是同Uijling的UVA系统比较，因为我们的方法同样基于候选框算法。对于候选区域的分类，他们通过构建一个四层的金字塔，并且将之与SIFT模板结合，SIFT为扩展的OpponentSIFT和RGB-SIFT描述子，每一个向量被量化为4000词的codebook。分类任务由一个交叉核的支持向量机承担，对比这种方法的多特征方法，非线性内核的SVM方法，我们在mAP达到一个更大的提升，从35.1%提升至53.7%，而且速度更快。我们的方法在VOC2011/2012数据达到了相似的检测效果mAP53.3%。</p>
+<h3 id="2-5-ILSVRC2013-detection结果"><a href="#2-5-ILSVRC2013-detection结果" class="headerlink" title="2.5 . ILSVRC2013 detection结果"></a>2.5 . ILSVRC2013 detection结果</h3><p>第四节，我们给出ILSVRC2013检测集的概览并提供一些运行R-CNN时所作的各种选择的细节。</p>
+<h2 id="3-可视化、融合、模型的错误"><a href="#3-可视化、融合、模型的错误" class="headerlink" title="3. 可视化、融合、模型的错误"></a>3. 可视化、融合、模型的错误</h2><h3 id="3-1-可视化学习到的特征"><a href="#3-1-可视化学习到的特征" class="headerlink" title="3.1 可视化学习到的特征"></a>3.1 可视化学习到的特征</h3><p>　　直接可视化第一层特征过滤器非常容易理解[25]，它们主要捕获方向性边缘和对比色。难以理解的是后面的层。Zeiler and Fergus提出了一种可视化的很棒的反卷积办法[42]。我们则使用了一种简单的非参数化方法，直接展示网络学到的东西。这个想法是单一输出网络中一个特定单元（特征），然后把它当做一个正确类别的物体检测器来使用。<br>　　方法是这样的，先计算所有抽取出来的推荐区域（大约1000万），计算每个区域所导致的对应单元的激活值，然后按激活值对这些区域进行排序，然后进行最大值抑制，最后展示分值最高的若干个区域。这个方法让被选中的单元在遇到他想激活的输入时“自己说话”。我们避免平均化是为了看到不同的视觉模式和深入观察单元计算出来的不变性。<br>　　我们可视化了第五层的池化层pool5，是卷积网络的最后一层，feature_map(卷积核和特征数的总称)的大小是6 x 6 x 256 = 9216维。忽略边界效应，每个pool5单元拥有195×195的感受野，输入是227×227。pool5中间的单元，几乎是一个全局视角，而边缘的单元有较小的带裁切的支持。<br>图4的每一行显示了对于一个pool5单元的最高16个激活区域情况，这个实例来自于VOC 2007上我们调优的CNN，这里只展示了256个单元中的6个（附录D包含更多）。我们看看这些单元都学到了什么。第二行，有一个单元看到狗和斑点的时候就会激活，第三行对应红斑点，还有人脸，当然还有一些抽象的模式，比如文字和带窗户的三角结构。这个网络似乎学到了一些类别调优相关的特征，这些特征都是形状、纹理、颜色和材质特性的分布式表示。而后续的fc6层则对这些丰富的特征建立大量的组合来表达各种不同的事物。<br><img src="/2018/07/21/rcnn_translation/4.png" alt="图4"></p>
+<h3 id="3-2-消融研究"><a href="#3-2-消融研究" class="headerlink" title="3.2 消融研究"></a>3.2 消融研究</h3><p>　　<strong>没有调优的各层性能</strong>。为了理解哪一层对于检测的性能十分重要，我们分析了CNN最后三层的每一层在VOC2007上面的结果。Pool5在3.1中做过剪短的表述。最后两层下面来总结一下。<br>　　fc6是一个与pool5连接的全连接层。为了计算特征，它和pool5的feature map（reshape成一个9216维度的向量）做了一个4096×9216的矩阵乘法，并添加了一个bias向量。中间的向量是逐个组件的半波整流（component-wise half-wave rectified）ReLU,fc7是网络的最后一层。跟fc6之间通过一个4096×4096的矩阵相乘。也是添加了bias向量和应用了ReLU。<br>　　我们先来看看没有调优的CNN在PASCAL上的表现，没有调优是指所有的CNN参数就是在ILSVRC2012上训练后的状态。分析每一层的性能显示来自fc7的特征泛化能力不如fc6的特征。这意味29%的CNN参数，也就是1680万的参数可以移除掉，而且不影响mAP。更多的惊喜是即使同时移除fc6和fc7，仅仅使用pool5的特征，只使用CNN参数的6%也能有非常好的结果。可见CNN的主要表达力来自于卷积层，而不是全连接层。这个发现提醒我们也许可以在计算一个任意尺寸的图片的稠密特征图（dense feature map）时使仅仅使用CNN的卷积层。这种表示可以直接在pool5的特征上进行滑动窗口检测的实验。<br>　　<strong>调优后的各层性能</strong>。我们来看看调优后在VOC2007上的结果表现。提升非常明显，mAP提升了8个百分点，达到了54.2%。fc6和fc7的提升明显优于pool5，这说明pool5从ImageNet学习的特征通用性很强，在它之上层的大部分提升主要是在学习领域相关的非线性分类器。<br>对比其他特征学习方法。相当少的特征学习方法应用与VOC数据集。我们找到的两个最近的方法都是基于固定探测模型。为了参照的需要，我们也将基于基本HOG的DFM方法的结果加入比较<br>　　第一个DPM的特征学习方法，DPM ST,将HOG中加入略图表征的概率直方图。直观的，一个略图就是通过图片中心轮廓的狭小分布。略图表征概率通过一个被训练出来的分类35*35像素路径为一个150略图表征的的随机森林方法计算<br>　　第二个方法，DPM HSC，将HOG特征替换成一个稀疏编码的直方图。为了计算HSC（HSC的介绍略）<br>　　所有的RCNN变种算法都要强于这三个DPM方法（表2 8-10行），包括两种特征学习的方法（特征学习不同于普通的HOG方法？）与最新版本的DPM方法比较，我们的mAP要多大约20个百分点，61%的相对提升。略图表征与HOG现结合的方法比单纯HOG的性能高出2.5%，而HSC的方法相对于HOG提升四个百分点（当内在的与他们自己的DPM基准比价，全都是用的非公共DPM执行，这低于开源版本）。这些方法分别达到了29.1%和34.3%。</p>
+<h3 id="3-3-网络架构"><a href="#3-3-网络架构" class="headerlink" title="3.3 网络架构"></a>3.3 网络架构</h3><p>　　本文中的大部分结果所采用的架构都来自于Krizhevsky等人的工作[25]。然后我们也发现架构的选择对于R-CNN的检测性能会有很大的影响。表3中我们展示了VOC2007测试时采用了16层的深度网络，由Simonyan和Zisserman[43]刚刚提出来。这个网络在ILSVRC2014分类挑战上是最佳表现。这个网络采用了完全同构的13层3×3卷积核，中间穿插了5个最大池化层，顶部有三个全连接层。我们称这个网络为O-Net表示OxfordNet，将我们的基准网络称为T-Net表示TorontoNet。<br>　　为了使用O-Net，我们从Caffe模型库中下载了他们训练好的权重VGG_ILSVRC_16_layers。然后使用和T-Net上一样的操作过程进行调优。唯一的不同是使用了更小的Batch Size（24），主要是为了适应GPU的内存。表3中的结果显示使用O-Net的R-CNN表现优越，将mAP从58.5%提升到了66.0%。然后它有个明显的缺陷就是计算耗时。O-Net的前向传播耗时大概是T-Net的7倍。</p>
+<h3 id="3-4-检测错误分析"><a href="#3-4-检测错误分析" class="headerlink" title="3.4 检测错误分析"></a>3.4 检测错误分析</h3><p>　　为了揭示出我们方法的错误之处， 我们使用Hoiem提出的优秀的检测分析工具，来理解调参是怎样改变他们，并且观察相对于DPM方法，我们的错误形式。这个分析方法全部的介绍超出了本篇文章的范围，我们建议读者查阅文献21来了解更加详细的介绍（例如归一化AP的介绍），由于这些分析是不太有关联性，所以我们放在图4和图5的题注中讨论。<br><img src="/2018/07/21/rcnn_translation/5.png" alt="图5"></p>
+<h3 id="3-5-Bounding-box回归"><a href="#3-5-Bounding-box回归" class="headerlink" title="3.5 Bounding-box回归"></a>3.5 Bounding-box回归</h3><p>　　基于错误分析，我们使用了一种简单的方法减小定位误差。受到DPM[17]中使用的约束框回归训练启发，我们训练了一个线性回归模型在给定一个选择区域的pool5特征时去预测一个新的检测窗口。详细的细节参考附录C。表1、表2和图5的结果说明这个简单的方法，修复了大量的错位检测，提升了3-4个百分点。<br><img src="/2018/07/21/rcnn_translation/6.png" alt="图6"></p>
+<h3 id="3-6-定性结果【略】"><a href="#3-6-定性结果【略】" class="headerlink" title="3.6 定性结果【略】"></a>3.6 定性结果【略】</h3><h2 id="4、-ILSVRC2013检测数据集【略】"><a href="#4、-ILSVRC2013检测数据集【略】" class="headerlink" title="4、 ILSVRC2013检测数据集【略】"></a>4、 ILSVRC2013检测数据集【略】</h2><h2 id="5、-语义分割"><a href="#5、-语义分割" class="headerlink" title="5、 语义分割"></a>5、 语义分割</h2><p>区域分类是语义分割的标准技术，这使得我们很容易将R-CNN应用到PASCAL VOC分割任务的挑战。为了和当前主流的语义分割系统（称为O2P，second-order pooling[4]）做对比，我们使用了一个开源的框架。O2P使用CPMC针对每张图片产生150个跟区域推荐，并预测每个区域的品质，对于每个类别，进行支撑向量回归（support vector regression，SVR）。他们的方法很高效，主要得益于CPMC区域的品质和多特征类型的强大二阶池化（second-second pooling，SIFT和LBP的增强变种）。我们也注意到Farabet等人[16]将CNN用作多尺度逐像素分类器，在几个高密度场景标注数据集（不包括PASCAL）上取得了不错的成绩。<br>　　我们学习[2,4]，将Hariharan等人提供的额外标注信息补充到PASCAL分割训练集中。设计选择和超参数都在VOC 2011验证集上进行交叉验证。最后的测试结果只执行了一次。<br>　　用于分割的CNN特征。为了计算CPMC区域上的特征，我们执行了三个策略，每个策略都先将矩形窗口变形到227×227大小。第一个策略完全忽略区域的形状(full ignore)，直接在变形后的窗口上计算CNN特征，就和我们检测时做的一样。但是，这些特征忽略了区域的非矩形形状。两个区域也许包含相似的约束框却几乎没有重叠。因此，第二个策略(fg，foreground)只计算前景遮罩（foreground mask）的CNN特征，我们将所有的背景像素替换成平均输入，这样减除平均值后他们就会变成0。第三个策略(full+fg)，简单的并联全部（full）特征和前景（fg）特征；我们的实验验证了他们的互补性。</p>
+<h2 id="6-结论"><a href="#6-结论" class="headerlink" title="6. 结论"></a>6. 结论</h2><p>最近几年，物体检测陷入停滞，表现最好的检测系统是复杂的将多低层级的图像特征与高层级的物体检测器环境与场景识别相结合。本文提出了一种简单并且可扩展的物体检测方法，达到了VOC2012数据集相对之前最好性能的30%的提升。<br>　　我们取得这个性能主要通过两个理解：第一是应用了自底向上的候选框训练的高容量的卷积神经网络进行定位和分割物体。另外一个是使用在标签数据匮乏的情况下训练大规模神经网络的一个方法。我们展示了在有监督的情况下使用丰富的数据集（图片分类）预训练一个网络作为辅助性的工作是很有效的，然后采用稀少数据（检测）去调优定位任务的网络。我们猜测“有监督的预训练+特定领域的调优”这一范式对于数据稀少的视觉问题是很有效的。<br>　　最后,我们注意到通过使用经典的组合从计算机视觉和深度学习的工具实现这些结果（自底向上的区域候选框和卷积神经网络）是重要的。而不是违背科学探索的主线，这两个部分是自然而且必然的结合。</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>A. Object proposal transformations</p>
+<p>B. Positive vs. negative examples and softmax</p>
+<p>C. Bounding-box regression</p>
+<p>D. Additional feature visualizations</p>
+<p>E. Per-category segmentation results</p>
+<p>F. Analysis of cross-dataset redundancy</p>
+<p>G. Document changelog</p>
+<p>##References<br>[1] B. Alexe, T. Deselaers, and V. Ferrari. Measuring the objectness of image windows. TPAMI, 2012.<br>[2] P. Arbelaez, B. Hariharan, C. Gu, S. Gupta, L. Bourdev, and J. Malik. Semantic segmentation using regions and parts. InCVPR, 2012. 10, 11<br>[3] P. Arbelaez, J. Pont-Tuset, J. Barron, F. Marques, and J. Ma-lik. Multiscale combinatorial grouping. In CVPR, 2014. 3<br>[4] J. Carreira, R. Caseiro, J. Batista, and C. Sminchisescu. Semantic segmentation with second-order pooling. In ECCV, 2012.<br>[5] J. Carreira and C. Sminchisescu. CPMC: Automatic object segmentation using constrained parametric min-cuts.<br>[6] D. Ciresan, A. Giusti, L. Gambardella, and J. Schmidhuber. Mitosis detection in breast cancer histology images with deep neural networks. In MICCAI, 2013.<br>[7] N. Dalal and B. Triggs. Histograms of oriented gradients for human detection. In CVPR, 2005.<br>[8] T. Dean, M. A. Ruzon, M. Segal, J. Shlens, S. Vijayanarasimhan, and J. Yagnik. Fast, accurate detection of 100,000 object classes on a single machine. In CVPR, 2013.<br>[9] J. Deng, A. Berg, S. Satheesh, H. Su, A. Khosla, and L. FeiFei. ImageNet Large Scale Visual Recognition Competition 2012 (ILSVRC2012).<br>[10] J. Deng, W. Dong, R. Socher, L.-J. Li, K. Li, and L. FeiFei. ImageNet: A large-scale hierarchical image database. In CVPR, 2009.<br>[11] J. Deng, O. Russakovsky, J. Krause, M. Bernstein, A. C. Berg, and L. Fei-Fei. Scalable multi-label annotation. In CHI, 2014.<br>[12] J. Donahue, Y. Jia, O. Vinyals, J. Hoffman, N. Zhang, E. Tzeng, and T. Darrell. DeCAF: A Deep Convolutional Activation Feature for Generic Visual Recognition. In ICML, 2014.为CNN性能说明<br>[13] M. Douze, H. Jegou, H. Sandhawalia, L. Amsaleg, and C. Schmid. Evaluation of gist descriptors for web-scale image search. In Proc. of the ACM International Conference on Image and Video Retrieval, 2009.<br>[14] I. Endres and D. Hoiem. Category independent object proposals. In ECCV, 2010. 3<br>[15] M. Everingham, L. Van Gool, C. K. I. Williams, J. Winn, and A. Zisserman. The PASCAL Visual Object Classes (VOC) Challenge. IJCV, 2010.<br>[16] C. Farabet, C. Couprie, L. Najman, and Y. LeCun. Learning hierarchical features for scene labeling. TPAMI, 2013.<br>[17] P. Felzenszwalb, R. Girshick, D. McAllester, and D. Ramanan. Object detection with discriminatively trained part based models. TPAMI, 2010.<br>[18] S. Fidler, R. Mottaghi, A. Yuille, and R. Urtasun. Bottom-up segmentation for top-down detection. In CVPR, 2013.<br>[19] K. Fukushima. Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position. Biological cybernetics, 36(4):193–202, 1980.<br>[20] R. Girshick, P. Felzenszwalb, and D. McAllester. Discriminatively trained deformable part models, release 5. <a href="http://www.cs.berkeley.edu/rbg/latent-v5/" target="_blank" rel="noopener">http://www.cs.berkeley.edu/rbg/latent-v5/</a>.<br>[21] C. Gu, J. J. Lim, P. Arbelaez, and J. Malik. Recognition using regions. In CVPR, 2009.<strong>这篇文章给本文提供了思路</strong><br>[22] B. Hariharan, P. Arbelaez, L. Bourdev, S. Maji, and J. Malik. Semantic contours from inverse detectors. In ICCV, 2011.<br>[23] D. Hoiem, Y. Chodpathumwan, and Q. Dai. Diagnosing error in object detectors. In ECCV. 2012.<br>[24] Y. Jia. Caffe: An open source convolutional architecture for fast feature embedding.<br><a href="http://caffe.berkeleyvision.org/" target="_blank" rel="noopener">http://caffe.berkeleyvision.org/</a>, 2013.<br>[25] A. Krizhevsky, I. Sutskever, and G. Hinton. ImageNet classification with deep convolutional neural networks. In NIPS, 2012.<strong>CNN模型提出的文章，经典论文</strong><br>[26] Y. LeCun, B. Boser, J. Denker, D. Henderson, R. Howard, W. Hubbard, and L. Jackel. Backpropagation applied to handwritten zip code recognition. Neural Comp., 1989.<br>[27] Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner. Gradientbased learning applied to document recognition. Proc. of the IEEE, 1998.<br>[28] J. J. Lim, C. L. Zitnick, and P. Dollar. Sketch tokens: A learned mid-level representation for contour and object detection. In CVPR, 2013.<br>[29] D. Lowe. Distinctive image features from scale-invariant keypoints. IJCV, 2004.<br>[30] A. Oliva and A. Torralba. Modeling the shape of the scene: A holistic representation of the spatial envelope. IJCV, 2001.<br>[31] X. Ren and D. Ramanan. Histograms of sparse codes for object detection. In CVPR, 2013.<br>[32] H. A. Rowley, S. Baluja, and T. Kanade. Neural networkbased face detection. TPAMI, 1998.<br>[33] D. E. Rumelhart, G. E. Hinton, and R. J. Williams. Learning internal representations by error propagation. Parallel Distributed Processing, 1:318–362, 1986.<br>[34] P. Sermanet, D. Eigen, X. Zhang, M. Mathieu, R. Fergus, and Y. LeCun. OverFeat: Integrated Recognition, Localization and Detection using Convolutional Networks. In ICLR, 2014.<br>[35] P. Sermanet, K. Kavukcuoglu, S. Chintala, and Y. LeCun. Pedestrian detection with unsupervised multi-stage feature learning. In CVPR, 2013.<br>[36] H. Su, J. Deng, and L. Fei-Fei. Crowdsourcing annotations for visual object detection. In AAAI Technical Report, 4th Human Computation Workshop, 2012.<br>[37] K. Sung and T. Poggio. Example-based learning for viewbased human face detection. Technical Report A.I. Memo No. 1521, Massachussets Institute of Technology, 1994.<br>[38] C. Szegedy, A. Toshev, and D. Erhan. Deep neural networks for object detection. In NIPS, 2013.<br>[39] J. Uijlings, K. van de Sande, T. Gevers, and A. Smeulders. Selective search for object recognition. IJCV, 2013.<strong>SS regions proposal 选择算法</strong><br>[40] R. Vaillant, C. Monrocq, and Y. LeCun. Original approach for the localisation of objects in images. IEE Proc on Vision, Image, and Signal Processing, 1994.<br>[41] X. Wang, M. Yang, S. Zhu, and Y. Lin. Regionlets for generic object detection. In ICCV, 2013.<br>[42] M. Zeiler, G. Taylor, and R. Fergus. Adaptive deconvolutional networks for mid and high level feature learning. In CVPR, 2011.<br>[43] K. Simonyan and A. Zisserman. Very Deep Convolutional Networks for Large-Scale Image Recognition. arXiv preprint, arXiv:1409.1556, 2014.</p>
+<h2 id="相关参考博客"><a href="#相关参考博客" class="headerlink" title="相关参考博客"></a>相关参考博客</h2><p><a href="https://blog.csdn.net/u011534057/article/details/51218250" target="_blank" rel="noopener">https://blog.csdn.net/u011534057/article/details/51218250</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/21/rcnn_translation/" data-id="cjjynyjh10006a4uqoz71hu6v" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/translation/">translation</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/22/fastrcnn_translation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          论文翻译Fast R-CNN
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/13/caffe-train-val-prototxt-solver-prototxt-deploy-prototxt/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">caffe:train_val.prototxt,solver.prototxt,deploy.prototxt</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CV/">CV</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/caffe/">caffe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/semantic-segmentation/">semantic segmentation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/translation/">translation</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CV/" style="font-size: 10px;">CV</a> <a href="/tags/caffe/" style="font-size: 10px;">caffe</a> <a href="/tags/deep-learning/" style="font-size: 20px;">deep learning</a> <a href="/tags/semantic-segmentation/" style="font-size: 10px;">semantic segmentation</a> <a href="/tags/translation/" style="font-size: 15px;">translation</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/24/fasterrcnn_translation/">论文翻译Faster R-CNN：利用区域提案网络实现实时目标检测</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/24/My-New-Post/">论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/22/fastrcnn_translation/">论文翻译Fast R-CNN</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/21/rcnn_translation/">论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/13/caffe-train-val-prototxt-solver-prototxt-deploy-prototxt/">caffe:train_val.prototxt,solver.prototxt,deploy.prototxt</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
