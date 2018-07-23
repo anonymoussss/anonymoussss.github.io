@@ -10,7 +10,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>JL Ma</name>
     
   </author>
   
@@ -114,9 +114,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="caffe" scheme="http://yoursite.com/tags/caffe/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   
