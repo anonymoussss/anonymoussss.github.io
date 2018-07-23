@@ -43,33 +43,6 @@
   </entry>
   
   <entry>
-    <title>论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)</title>
-    <link href="http://yoursite.com/2018/07/24/My-New-Post/"/>
-    <id>http://yoursite.com/2018/07/24/My-New-Post/</id>
-    <published>2018-07-23T19:20:23.000Z</published>
-    <updated>2018-07-23T19:25:42.868Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;test&lt;/p&gt;
-
-        
-      
-    
-    </summary>
-    
-    
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
-      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
-    
-  </entry>
-  
-  <entry>
     <title>论文翻译Fast R-CNN</title>
     <link href="http://yoursite.com/2018/07/22/fastrcnn_translation/"/>
     <id>http://yoursite.com/2018/07/22/fastrcnn_translation/</id>
@@ -141,9 +114,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="caffe" scheme="http://yoursite.com/tags/caffe/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="CV" scheme="http://yoursite.com/tags/CV/"/>
     
