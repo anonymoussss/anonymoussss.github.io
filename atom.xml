@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-23T23:05:59.595Z</updated>
+  <updated>2018-07-23T23:22:17.461Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2018/07/24/fasterrcnn_translation/"/>
     <id>http://yoursite.com/2018/07/24/fasterrcnn_translation/</id>
     <published>2018-07-24T03:01:23.000Z</published>
-    <updated>2018-07-23T23:05:59.595Z</updated>
+    <updated>2018-07-23T23:22:17.461Z</updated>
     
     <summary type="html">
     
@@ -43,11 +43,11 @@
   </entry>
   
   <entry>
-    <title>论文翻译Fast R-CNN</title>
+    <title>📜论文翻译 Fast R-CNN</title>
     <link href="http://yoursite.com/2018/07/22/fastrcnn_translation/"/>
     <id>http://yoursite.com/2018/07/22/fastrcnn_translation/</id>
     <published>2018-07-22T08:20:23.000Z</published>
-    <updated>2018-07-23T19:27:31.994Z</updated>
+    <updated>2018-07-23T23:22:13.777Z</updated>
     
     <summary type="html">
     
@@ -69,11 +69,11 @@
   </entry>
   
   <entry>
-    <title>论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)</title>
+    <title>📜论文翻译 Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)</title>
     <link href="http://yoursite.com/2018/07/21/rcnn_translation/"/>
     <id>http://yoursite.com/2018/07/21/rcnn_translation/</id>
     <published>2018-07-21T12:20:23.000Z</published>
-    <updated>2018-07-23T19:27:23.176Z</updated>
+    <updated>2018-07-23T23:22:07.006Z</updated>
     
     <summary type="html">
     

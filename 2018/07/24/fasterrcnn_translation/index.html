@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/24/fasterrcnn_translation/16.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/24/fasterrcnn_translation/17.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/24/fasterrcnn_translation/18.png">
-<meta property="og:updated_time" content="2018-07-23T23:05:59.595Z">
+<meta property="og:updated_time" content="2018-07-23T23:22:17.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="📜论文翻译 Faster R-CNN：利用区域提案网络实现实时目标检测">
 <meta name="twitter:description" content="摘要目前最先进的目标检测网络需要先用区域提案算法推测目标位置，像SPPnet1和Fast R-CNN2这些网络已经减少了检测网络的运行时间，这时计算区域提案就成了瓶颈问题。本文中，我们介绍一种区域提案网络（Region Proposal Network, RPN），它和检测网络共享全图的卷积特征，使得区域提案几乎不花时间。RPN是一个全卷积网络，在每个位置同时预测目标边界和objectness得分">
@@ -369,7 +369,8 @@
 <p>作为比较，我们基于锚点的方法建立在一个锚点金字塔上，这更具成本效益。我们的方法参照多个尺度和纵横比的锚点框分类和回归边界框。它仅依赖于单个尺度的图像和特征图，并使用单个尺寸的卷积（特征图上的滑动窗口）。我们通过实验展示了该方案对于多种尺度和尺寸的影响（表8）。</p>
 <p>由于这种基于锚点的多尺度设计，我们可以简单地使用单尺度图像上的卷积特征，这也是Fast R-CNN检测器2所完成的。多尺度锚点的设计是共享特征的关键组件，无需额外的成本来缩放尺寸。</p>
 <h4 id="3-1-2损失函数"><a href="#3-1-2损失函数" class="headerlink" title="3.1.2损失函数"></a>3.1.2损失函数</h4><p>为了训练RPN，<strong>我们给每个anchor分配一个二值的标签（是不是目标）</strong>。我们分配正标签给两类anchor：（i）与检测框真值IoU最高的anchor（ii）与任意检测框真值有大于0.7的IoU交叠的anchor。注意到一个检测框真值可能分配正标签给多个anchor。通常第二个条件足以确定正样本。但是我们仍然采取第一个条件，因为在极少数情况下，第二个条件可能没有发现正样本。我们分配负标签给与所有检测框真值的IoU比率都低于0.3的anchor。非正非负的anchor对训练目标没有任何作用。</p>
-<p>有了这些定义，我们遵循Fast R-CNN<sup>5</sup>中的多任务损失，最小化目标函数。我们对一个图像的损失函数定义为<br>$$L({pi},{ti})=\frac{1}{N_{cls}}∑_iL_{cls}(p_i,p^<em><em>i) + λ\frac{1}{N</em>{reg}}∑_ip^</em>_iL_{reg}(t_i,t^<em>_i)(1)$$<br>这里，i是一个mini-batch中anchor的索引。$p_i$是anchori是目标的预测概率,如果anchor为正，检测框真值标签$p^</em>_i$就是1，如果anchor为负，$p^<em>_i$就是0。$t_i$是一个向量，表示预测的检测框的4个参数化坐标，$t_i^{\ast}$是与正anchor对应的检测框真值的坐标向量。分类损失$L_{cls}$是两个类别（目标vs.非目标）的log对数损失。对于回归损失，我们用$L_{reg}(t_i, t_i^{\ast}) = R(t_i - t_i^{\ast})$来计算，其中$R$是2中定义的鲁棒的损失函数（smooth L1）。$p^</em>_iL_{reg}$这一项意味着只有正anchor(P∗i=1)才有回归损失，其他情况($p^*_i=0$)就没有。cls层和reg层的输出分别由${p_i}$和{t_i}组成。</p>
+<p>有了这些定义，我们遵循Fast R-CNN<sup>5</sup>中的多任务损失，最小化目标函数。我们对一个图像的损失函数定义为</p>
+<script type="math/tex; mode=display">L(\{pi\},\{ti\})=\frac{1}{N_{cls}}∑_iL_{cls}(p_i,p^*_i) + λ\frac{1}{N_{reg}}∑_ip^*_iL_{reg}(t_i,t^*_i)(1)</script><p>这里，i是一个mini-batch中anchor的索引。$p_i$是anchori是目标的预测概率,如果anchor为正，检测框真值标签$p^<em>_i$就是1，如果anchor为负，$p^</em>_i$就是0。$t_i$是一个向量，表示预测的检测框的4个参数化坐标，$t_i^{\ast}$是与正anchor对应的检测框真值的坐标向量。分类损失$L_{cls}$是两个类别（目标vs.非目标）的log对数损失。对于回归损失，我们用$L_{reg}(t_i, t_i^{\ast}) = R(t_i - t_i^{\ast})$来计算，其中$R$是2中定义的鲁棒的损失函数（smooth L1）。$p^<em>_iL_{reg}$这一项意味着只有正anchor(P∗i=1)才有回归损失，其他情况($p^</em>_i=0$)就没有。cls层和reg层的输出分别由$\{p_i\}$和\{t_i\}组成。</p>
 <p>这两项分别由$N_{cls}$和$N_{reg}$以及一个权重平衡参数λ归一化。目前的实现中（参见公开的代码），公式(1)中的cls项的归一化值为mini-batch的大小（即$N_{cls}=256$），reg项的归一化值为anchor位置的数量（即$N_{reg}$约为2,400），默认情况下，λ=10，这样cls和reg项差不多是等权重的。我们通过实验显示，结果对λ在很大范围内的值不敏感（表9）。<strong>我们还留意到，上述的归一化其实不需要，可以简化</strong>。<br>对于回归，我们依照<sup>5</sup>采用4个坐标：<br>$t_x=(x-x_a)/w_a, t_y = (y-y_a)/h_a, $</p>
 <p>$t_w=log(x/w_a), t_h = log(h/h_a), $</p>
 <p>$t^<em>_x=(x^</em>-x_a)/w_a, t^<em>_y = (y^</em>-y_a)/h_a, $</p>
@@ -389,7 +390,7 @@
 <h3 id="3-3实现细节"><a href="#3-3实现细节" class="headerlink" title="3.3实现细节"></a>3.3实现细节</h3><p>我们训练、测试区域提案和目标检测网络都是在单一尺度的图像上<sup>1 2</sup>。我们缩放图像，让它们的短边s=600像素<sup>2</sup>。多尺度特征提取可能提高准确率但是不利于速度与准确率之间的权衡2。我们也注意到ZF和VGG网络，对缩放后的图像在最后一个卷积层的总步长为16像素，这样相当于一个典型的PASCAL图像（约500×375）上大约10个像素（600/16=375/10）。即使是这样大的步长也取得了好结果，尽管若步长小点准确率可能得到进一步提高。<br>对于anchor，我们用3个简单的尺度，包围盒面积为128<sup>2</sup>，256<sup>2</sup>，512<sup>2</sup>，和3个简单的长宽比，1:1，1:2，2:1。这些超参数不是特定数据集的选择，我们在下一节提供其影响的消融实验。讨论过，我们的解决方案不需要图像金字塔或卷积金字塔来预测多个尺度的区域，从而节省相当长的运行时间。图3（右）显示了我们的算法处理多种尺度和长宽比的能力。表1显示了用ZF网络对每个anchor学到的平均提案框大小。我们注意到，我们的算法允许预测框大于感受野。这样的预测并不是不可能的 - 如果只有目标的中间是可见的，那么仍然可以粗略地推断目标的范围。<br><img src="/2018/07/24/fasterrcnn_translation/4.png" alt="图4"><br>表1. 使用ZF网络对每个anchor学到的平均提案框大小（s=600）。</p>
 <p>跨越图像边界的anchor包围盒要小心处理。<strong>在训练中，我们忽略所有跨越图像边界的anchor，这样它们不会对损失有影响</strong>。对于一个典型的1000×600的图像，差不多总共有20k（约$60 \times 40 \times 9$）anchor。忽略了跨越边界的anchor以后，每个图像只剩下6k个anchor需要训练了。如果跨越边界的异常值在训练时不忽略，就会带来又大又困难的修正误差项，训练也不会收敛。<strong>在测试时，我们还是应用全卷积的RPN到整个图像中，这可能生成跨越边界的提案框，我们将其裁剪到图像边缘位置</strong>。</p>
 <p>有些RPN提案框和其他提案框大量重叠，为了减少冗余，我们基于提案区域的cls得分，对其采用<strong>非极大值抑制</strong>（non-maximum suppression, NMS）。我们固定对NMS的IoU阈值为0.7，这样每个图像只剩2k个提案区域。正如下面展示的，NMS不会影响最终的检测准确率，但是大幅地减少了提案框的数量。<strong>NMS之后，我们用提案区域中的top-N个来检测。在下文中，我们用2k个RPN提案框训练Fast R-CNN，但是在测试时会对不同数量的提案框进行评价</strong>。</p>
-<h2 id="4-实验"><a href="#4-实验" class="headerlink" title="4.实验"></a>4.实验</h2><h3 id="4-1在PASCAL-VOC上的实验"><a href="#4-1在PASCAL-VOC上的实验" class="headerlink" title="4.1在PASCAL VOC上的实验"></a>4.1在PASCAL VOC上的实验</h3><p>我们在PASCAL VOC2007检测基准<sup>10</sup>上综合评价我们的方法。此数据集包括20个目标类别，大约5k个trainval图像和5k个test图像。我们还对少数模型提供PASCAL VOC2012基准上的结果。对于ImageNet预训练网络，我们用“fast”版本的ZF网络<sup>32</sup>，有5个卷积层和3个 fc层，公开的VGG-16模型(<a href="http://www.robots.ox.ac.uk/~vgg/research/very" target="_blank" rel="noopener">www.robots.ox.ac.uk/~vgg/research/very</a> deep/)<sup>3</sup>，有13 个卷积层和3 个fc层。我们主要评估检测的平均精度（mean Average Precision, mAP），因为这是对目标检测的实际度量标准（而不是侧重于目标提案框的代理度量）。<br>表2（上）显示了使用各种区域提案的方法训练和测试时Fast R-CNN的结果。这些结果使用的是ZF网络。对于选择性搜索（SS）<sup>4</sup>，我们用“fast”模式生成了2k个左右的SS提案框。对于EdgeBoxes（EB）<sup>6</sup>，我们把默认的EB设置调整为0.7IoU生成提案框。SS的mAP 为58.7％，EB的mAP 为58.6％。RPN与Fast R-CNN实现了有竞争力的结果，<strong>当使用300个提案框时的mAP就有59.9％</strong>（对于RPN，提案框数量，如300，是一个图像产生提案框的最大数量。RPN可能产生更少的提案框，这样提案框的平均数量也更少了）。使用RPN实现了一个比用SS或EB更快的检测系统，因为有共享的卷积计算；提案框较少，也减少了区域方面的fc消耗（表5）。<br><img src="/2018/07/24/fasterrcnn_translation/5.png" alt="图5"><br>表2. PASCAL VOC2007年测试集的检测结果（在VOC2007 trainval训练）。该检测器是Fast R-CNN与ZF，但使用各种提案框方法进行训练和测试。</p>
+<h2 id="4-实验"><a href="#4-实验" class="headerlink" title="4.实验"></a>4.实验</h2><h3 id="4-1在PASCAL-VOC上的实验"><a href="#4-1在PASCAL-VOC上的实验" class="headerlink" title="4.1在PASCAL VOC上的实验"></a>4.1在PASCAL VOC上的实验</h3><p>我们在PASCAL VOC2007检测基准<sup>10</sup>上综合评价我们的方法。此数据集包括20个目标类别，大约5k个trainval图像和5k个test图像。我们还对少数模型提供PASCAL VOC2012基准上的结果。对于ImageNet预训练网络，我们用“fast”版本的ZF网络<sup>32</sup>，有5个卷积层和3个 fc层，公开的VGG-16模型(www.robots.ox.ac.uk/~vgg/research/very deep/)<sup>3</sup>，有13 个卷积层和3 个fc层。我们主要评估检测的平均精度（mean Average Precision, mAP），因为这是对目标检测的实际度量标准（而不是侧重于目标提案框的代理度量）。<br>表2（上）显示了使用各种区域提案的方法训练和测试时Fast R-CNN的结果。这些结果使用的是ZF网络。对于选择性搜索（SS）<sup>4</sup>，我们用“fast”模式生成了2k个左右的SS提案框。对于EdgeBoxes（EB）<sup>6</sup>，我们把默认的EB设置调整为0.7IoU生成提案框。SS的mAP 为58.7％，EB的mAP 为58.6％。RPN与Fast R-CNN实现了有竞争力的结果，<strong>当使用300个提案框时的mAP就有59.9％</strong>（对于RPN，提案框数量，如300，是一个图像产生提案框的最大数量。RPN可能产生更少的提案框，这样提案框的平均数量也更少了）。使用RPN实现了一个比用SS或EB更快的检测系统，因为有共享的卷积计算；提案框较少，也减少了区域方面的fc消耗（表5）。<br><img src="/2018/07/24/fasterrcnn_translation/5.png" alt="图5"><br>表2. PASCAL VOC2007年测试集的检测结果（在VOC2007 trainval训练）。该检测器是Fast R-CNN与ZF，但使用各种提案框方法进行训练和测试。</p>
 <p><strong>RPN的消融试验</strong>。为了研究RPN作为提案框方法的表现，我们进行了多次消融研究。首先，我们展示了RPN和Fast R-CNN检测网络之间共享卷积层的影响。要做到这一点，我们在4步训练过程中的第二步后停下来。使用分离的网络时的结果稍微降低为58.7％（RPN+ ZF，非共享，表2）。我们观察到，这是因为在第三步中，当调整过的检测器特征用于微调RPN时，提案框质量得到提高。 接下来，我们理清了RPN在训练Fast R-CNN检测网络上的影响。为此，我们用2k个SS提案框和ZF网络训练了一个Fast R-CNN模型。我们固定这个检测器，通过改变测试时使用的提案区域，评估检测的mAP。在这些消融实验中，RPN不与检测器共享特征。 在测试时用300个RPN提案框替换SS，mAP为56.8％。mAP的损失是训练/测试提案框之间的不一致所致。该结果作为以下比较的基准。 有些奇怪的是，在测试时使用排名最高的100个提案框时，RPN仍然会取得有竞争力的结果（55.1％），表明这种高低排名的RPN提案框是准确的。另一种极端情况，使用排名最高的6k个RPN提案框（没有NMS）取得具有可比性的mAP（55.2％），这表明NMS不会降低检测mAP，反而可以减少误报。 接下来，我们通过在测试时分别移除RPN的cls和reg中的一个，研究它们输出的作用。当在测试时（因此没有用NMS/排名）移除cls层，我们从没有计算得分的区域随机抽取N个提案框。N =1k 时mAP几乎没有变化（55.8％），但当N=100则大大降低为44.6％。<strong>这表明，cls得分是排名最高的提案框准确的原因</strong>。 另一方面，当在测试时移除reg层（这样的提案框就直接是anchor框了），mAP下降到52.1％。<strong>这表明，高品质的提案框主要归功于回归后的位置</strong>。单是anchor框不足以精确检测。 我们还评估更强大的网络对RPN的提案框质量的作用。我们使用VGG-16训练RPN，并仍然使用上述SS+ZF检测器。mAP从56.8％（使用RPN+ZF）提高到59.2％（使用RPN+VGG）。这是一个满意的结果，因为它表明，RPN+VGG的提案框质量比RPN+ZF的更好。由于RPN+ZF的提案框是可与SS竞争的（训练和测试一致使用时都是58.7％），我们可以预期RPN+VGG比SS好。下面的实验证明这一假说。 VGG-16的性能。表3展示了VGG-16对提案框和检测的结果。使用RPN+VGG，Fast R-CNN对不共享特征的结果是68.5％，比SS基准略高。如上所示，这是因为由RPN+VGG产生的提案框比SS更准确。不像预先定义的SS，RPN是实时训练的，能从更好的网络获益。对特征共享的变型，结果是69.9％——比强大的SS基准更好，提案框几乎无损耗。在PASCAL VOC2007 trainval和2012 trainval的并集上进一步训练RPN，mAP是73.2％。图5显示了PASCAL VOC 2007测试集的一些结果。跟[5]一样在VOC 2007 trainval+test和VOC2012 trainval的并集上训练时，我们的方法在PASCAL VOC 2012测试集上（表4）有70.4％的mAP。表6和表7显示了详细数字。</p>
 <p>表5中我们总结整个目标检测系统的运行时间。SS需要1~2秒，取决于图像内容（平均1.51s），采用VGG-16的Fast R-CNN在2k个SS提案框上需要320ms（若是用了SVD在fc层的话只用223ms2）。我们采用VGG-16的系统生成提案框和检测一共只需要198ms。卷积层共享时，RPN只用10ms来计算附加的几层。由于提案框较少（300），我们的区域计算花费也很低。我们的系统采用ZF网络时的帧率为17fps。</p>
 <p><img src="/2018/07/24/fasterrcnn_translation/6.png" alt="图6"><br>表3. 在PASCAL VOC 2007测试集上的检测结果，检测器是Fast R-CNN和VGG16。训练数据：“07”：VOC2007 trainval，“07+12”：VOC 2007 trainval和VOC 2012 trainval的并集。对RPN，用于Fast R-CNN训练时的提案框是2k。这在<sup>2</sup>中有报告；利用本文所提供的仓库（repository），这个数字更高（68.1）。</p>
@@ -406,13 +407,13 @@
 <p><img src="/2018/07/24/fasterrcnn_translation/14.png" alt="图14"><br>图4：PASCAL VOC 2007测试集上的召回率 vs. IoU重叠率</p>
 <p><strong>单级的检测vs. 两级的提案框+检测</strong>。OverFeat论文<sup>9</sup>提出在卷积特征映射的滑动窗口上使用回归和分类的检测方法。OverFeat是一个单级的，类特定的检测流程，我们的是一个两级的，由类无关的提案框方法和类特定的检测组成的级联方法。在OverFeat中，区域方面的特征来自一个滑动窗口，对应一个尺度金字塔的一个长宽比。这些特征被用于同时确定物体的位置和类别。在RPN中，特征都来自相对于anchor的方形（3×3）滑动窗口和预测提案框，是不同的尺度和长宽比。虽然这两种方法都使用滑动窗口，区域提案任务只是RPN + Fast R-CNN的第一级——检测器致力于改进提案框。在我们级联方法的第二级，区域一级的特征自适应地从提案框进行pooling1 5，更如实地覆盖区域的特征。我们相信这些特征带来更准确的检测。 为了比较单级和两级系统，我们通过单级的Fast R-CNN模拟OverFeat系统（因而也规避实现细节的其他差异）。在这个系统中，“提案框”是稠密滑动的，有3个尺度（128，256，512）和3个长宽比（1:1，1:2，2:1）。Fast R-CNN被训练来从这些滑动窗口预测特定类的得分和回归盒的位置。由于OverFeat系统采用多尺度的特征，我们也用由5个尺度中提取的卷积特征来评价。我们使用1 2中一样的5个尺度。 表10比较了两级系统和两个单级系统的变体。使用ZF模型，单级系统具有53.9％的mAP。这比两级系统（58.7％）低4.8％。这个实验证明级联区域提案方法和目标检测的有效性。类似的观察报告在2 39中，在两篇论文中用滑动窗口取代SS区域提案都导致了约6％的下降。我们还注意到，单级系统比较慢，因为它有相当多的提案框要处理。</p>
 <p><img src="/2018/07/24/fasterrcnn_translation/15.png" alt="图15"><br>表10：单级检测vs.两级提案+检测。检测结果都是在PASCAL VOC2007测试集使用ZF模型和Fast R-CNN。RPN使用非共享的特征。</p>
-<h3 id="4-2在MS-COCO上的实验"><a href="#4-2在MS-COCO上的实验" class="headerlink" title="4.2在MS COCO上的实验"></a>4.2在MS COCO上的实验</h3><p>我们在Microsoft COCO目标检测数据集上提供更多的结果11。此数据集涉及80个目标类别。我们对训练集上的80k图像，验证集上的40k图像以及test-dev上的20k图像进行了实验。我们评估了IoU∈[0.5:0.05:0.95]<br>的mAP均值（COCO的度量标准，简单地表示为mAP @[.5，.95]）和<a href="mailto:mAP@0.5" target="_blank" rel="noopener">mAP@0.5</a>（PASCAL VOC度量标准）。</p>
-<p>我们的系统进行了一些细微的修改来适配对这个数据集。我们在8 GPU实现上训练我们的模型，RPN（每个GPU 1个）有效的小批量大小为8，Fast R-CNN（每个GPU 2个）小批量大小16。 RPN步骤和Fast R-CNN步骤都训练了240k次迭代，学习率为0.003，然后用0.0003进行80k次迭代。我们修改学习率（从0.003开始，而不是0.001），因为小批量大小改变了。对于锚点，我们使用3个纵横比和4个尺度（增加64<sup>2</sup>），主要为了处理该数据集上的小对象。此外，在我们的Fast R-CNN步骤中，负样本被定义为与检测框真值的最大IoU在[0,0.5)之间，而不是<sup>1 2</sup>中使用的[0.1,0.5)。我们注意到，在SPPnet系统<sup>1</sup>中，在[0.1,0.5)之间的负样本用于网络微调，但在[0,0.5)之间的负样本仍然在具有难负样本重训练的SVM步骤中被访问。但是Fast R-CNN系统<sup>2</sup>放弃了SVM步骤，所以在[0,0.1)之间的负样本从未被访问过。包含这些[0,0.1)之间的样本在COCO数据集上提高了Fast R-CNN和Faster R-CNN系统的<a href="mailto:mAP@0.5" target="_blank" rel="noopener">mAP@0.5</a>（但PASCAL VOC的影响可以忽略不计）。</p>
+<h3 id="4-2在MS-COCO上的实验"><a href="#4-2在MS-COCO上的实验" class="headerlink" title="4.2在MS COCO上的实验"></a>4.2在MS COCO上的实验</h3><p>我们在Microsoft COCO目标检测数据集上提供更多的结果11。此数据集涉及80个目标类别。我们对训练集上的80k图像，验证集上的40k图像以及test-dev上的20k图像进行了实验。我们评估了IoU∈[0.5:0.05:0.95]<br>的mAP均值（COCO的度量标准，简单地表示为mAP @[.5，.95]）和mAP@0.5（PASCAL VOC度量标准）。</p>
+<p>我们的系统进行了一些细微的修改来适配对这个数据集。我们在8 GPU实现上训练我们的模型，RPN（每个GPU 1个）有效的小批量大小为8，Fast R-CNN（每个GPU 2个）小批量大小16。 RPN步骤和Fast R-CNN步骤都训练了240k次迭代，学习率为0.003，然后用0.0003进行80k次迭代。我们修改学习率（从0.003开始，而不是0.001），因为小批量大小改变了。对于锚点，我们使用3个纵横比和4个尺度（增加64<sup>2</sup>），主要为了处理该数据集上的小对象。此外，在我们的Fast R-CNN步骤中，负样本被定义为与检测框真值的最大IoU在[0,0.5)之间，而不是<sup>1 2</sup>中使用的[0.1,0.5)。我们注意到，在SPPnet系统<sup>1</sup>中，在[0.1,0.5)之间的负样本用于网络微调，但在[0,0.5)之间的负样本仍然在具有难负样本重训练的SVM步骤中被访问。但是Fast R-CNN系统<sup>2</sup>放弃了SVM步骤，所以在[0,0.1)之间的负样本从未被访问过。包含这些[0,0.1)之间的样本在COCO数据集上提高了Fast R-CNN和Faster R-CNN系统的mAP@0.5（但PASCAL VOC的影响可以忽略不计）。</p>
 <p>其余的实施细节与PASCAL VOC相同。特别是，我们继续使用300个提案和单尺度（s=600）测试。 COCO数据集上的每个图像的测试时间仍然是大约200ms。</p>
 <p><img src="/2018/07/24/fasterrcnn_translation/16.png" alt="图16"><br>表11：MS COCO数据集上的目标检测结果（％）。模型为VGG-16。</p>
-<p>在表11中，我们首先使用2的实现评估了Fast R-CNN系统的结果。我们的Fast R-CNN基线在test-dev上<a href="mailto:mAP@0.5" target="_blank" rel="noopener">mAP@0.5</a>为39.3％，高于[2]中的结果。我们推测，这个差距的原因主要是由于负样本的定义以及小批量大小的变化。我们还注意到，mAP@[.5，.95]差不多。</p>
-<p>接下来我们评估我们的Faster R-CNN系统。使用COCO训练集进行训练，Faster R-CNN在COCO test-dev上<a href="mailto:mAP@0.5" target="_blank" rel="noopener">mAP@0.5</a>为42.1％，mAP@[.5，.95]为21.5％的。与相同配置下的Fast R-CNN比较（表11），<a href="mailto:mAP@0.5" target="_blank" rel="noopener">mAP@0.5</a>提高2.8％，mAP@[.5，.95]提高2.2％。这表明RPN在较高的IoU阈值下表现出优异的定位精度。使用COCO train训练，Faster R-CNN在COCO test-dev上具<a href="mailto:mAP@0.5" target="_blank" rel="noopener">mAP@0.5</a>为42.7％，mAP@[.5，.95]为21.9％。图6显示了MS COCO test-dev的一些结果。</p>
-<p><img src="/2018/07/24/fasterrcnn_translation/17.png" alt="图17"><br>图6. 使用Faster R-CNN系统的MS COCO test-dev上的目标检测结果的选定示例。模型为VGG-16，训练数据为COCOtrainval（在test-dev上<a href="mailto:mAP@0.5" target="_blank" rel="noopener">mAP@0.5</a>为42.7％）。每个输出框与类别标签和[0,1]的Softmax分数相关联。分数阈值为0.6。对于每个图像，一种颜色表示在该图像中的一种目标类别。</p>
+<p>在表11中，我们首先使用2的实现评估了Fast R-CNN系统的结果。我们的Fast R-CNN基线在test-dev上mAP@0.5为39.3％，高于[2]中的结果。我们推测，这个差距的原因主要是由于负样本的定义以及小批量大小的变化。我们还注意到，mAP@[.5，.95]差不多。</p>
+<p>接下来我们评估我们的Faster R-CNN系统。使用COCO训练集进行训练，Faster R-CNN在COCO test-dev上mAP@0.5为42.1％，mAP@[.5，.95]为21.5％的。与相同配置下的Fast R-CNN比较（表11），mAP@0.5提高2.8％，mAP@[.5，.95]提高2.2％。这表明RPN在较高的IoU阈值下表现出优异的定位精度。使用COCO train训练，Faster R-CNN在COCO test-dev上具mAP@0.5为42.7％，mAP@[.5，.95]为21.9％。图6显示了MS COCO test-dev的一些结果。</p>
+<p><img src="/2018/07/24/fasterrcnn_translation/17.png" alt="图17"><br>图6. 使用Faster R-CNN系统的MS COCO test-dev上的目标检测结果的选定示例。模型为VGG-16，训练数据为COCOtrainval（在test-dev上mAP@0.5为42.7％）。每个输出框与类别标签和[0,1]的Softmax分数相关联。分数阈值为0.6。对于每个图像，一种颜色表示在该图像中的一种目标类别。</p>
 <p><strong>ILSVRC和COCO 2015比赛中的Faster R-CNN</strong>：我们已经证明，Faster R-CNN从更好的特征中获益更多，这得益于RPN完全通过神经网络学习区域提案的事实。即使将深度大大增加到100多层，这一结论仍然有效<sup>18</sup>。只通过用101层的残差网络（ResNet-101）代替VGG-16 <sup>18</sup>，Faster R-CNN系统将在COCO val上mAP从41.5％/ 21.2％（VGG-16）提高到了48.4％/ 27.2％（ResNet -101）。再加上其它对Faster R- CNN的改进，He等人<sup>18</sup>获得了55.7％/ 34.9％的单模型结果，COCO test-dev的综合结果为59.0％/ 37.4％，在COCO 2015目标检测竞赛中排名第一。同样的系统<sup>18</sup>也在ILSVRC 2015目标检测比赛中荣获第一名，超过第二名8.5％。 RPN也是ILSVRC 2015定位和COCO 2015分割比赛中第一名获奖作品的组成部分，细节分别在<sup>18 15</sup>中提供。</p>
 <h3 id="4-3从MS-COCO到PASCAL-VOC"><a href="#4-3从MS-COCO到PASCAL-VOC" class="headerlink" title="4.3从MS COCO到PASCAL VOC"></a>4.3从MS COCO到PASCAL VOC</h3><p>大规模数据对于改进深层神经网络至关重要。接下来，我们调查MS COCO数据集如何帮助PASCAL VOC改善检测性能。<br><img src="/2018/07/24/fasterrcnn_translation/18.png" alt="图18"><br>表12：PASCAL VOC 2007测试集和2012测试集中使用不同训练数据的Faster R-CNN检测mAP（％）。模型为VGG-16。 “COCO”表示COCO训练集用于训练。另见表6和表7。</p>
 <p>作为一个简单的基线，我们直接评估了PASCAL VOC数据集中的COCO检测模型，而不对任何PASCAL VOC数据进行微调。这种评估是可能的，因为COCO的类别是PASCAL VOC类别的超集。在COCO中独有的类别在本实验中被忽略，Softmax层仅在20个类别和背景上执行。在PASCAL VOC 2007测试集上，此设置下的mAP为76.1％（表12）。尽管PASCAL VOC数据没有得到利用，但这一结果比VOC07 + 12（73.2％）得到了很好的提升。</p>
@@ -529,8 +530,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/22/fastrcnn_translation/" rel="next" title="论文翻译Fast R-CNN">
-                <i class="fa fa-chevron-left"></i> 论文翻译Fast R-CNN
+              <a href="/2018/07/22/fastrcnn_translation/" rel="next" title="📜论文翻译 Fast R-CNN">
+                <i class="fa fa-chevron-left"></i> 📜论文翻译 Fast R-CNN
               </a>
             
           </div>
@@ -871,6 +872,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 

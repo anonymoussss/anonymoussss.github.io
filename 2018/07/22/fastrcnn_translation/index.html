@@ -84,7 +84,7 @@
 <meta name="description" content="摘要本文提出了一种快速的基于区域的卷积网络方法（fast R-CNN）用于目标检测。Fast R-CNN建立在以前使用的深卷积网络有效地分类目标的成果上。相比于之前的成果，Fast R-CNN采用了多项创新提高训练和测试速度来提高检测精度。Fast R-CNN训练非常深的VGG16网络比R-CNN快9倍，测试时间快213倍，并在PASCAL VOC上得到更高的精度。与SPPnet相比，fast R">
 <meta name="keywords" content="deep learning,translation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="论文翻译Fast R-CNN">
+<meta property="og:title" content="📜论文翻译 Fast R-CNN">
 <meta property="og:url" content="http://yoursite.com/2018/07/22/fastrcnn_translation/index.html">
 <meta property="og:site_name" content="anonymous sss">
 <meta property="og:description" content="摘要本文提出了一种快速的基于区域的卷积网络方法（fast R-CNN）用于目标检测。Fast R-CNN建立在以前使用的深卷积网络有效地分类目标的成果上。相比于之前的成果，Fast R-CNN采用了多项创新提高训练和测试速度来提高检测精度。Fast R-CNN训练非常深的VGG16网络比R-CNN快9倍，测试时间快213倍，并在PASCAL VOC上得到更高的精度。与SPPnet相比，fast R">
@@ -99,9 +99,9 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/8.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/10.png">
-<meta property="og:updated_time" content="2018-07-23T19:27:31.994Z">
+<meta property="og:updated_time" content="2018-07-23T23:22:13.777Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="论文翻译Fast R-CNN">
+<meta name="twitter:title" content="📜论文翻译 Fast R-CNN">
 <meta name="twitter:description" content="摘要本文提出了一种快速的基于区域的卷积网络方法（fast R-CNN）用于目标检测。Fast R-CNN建立在以前使用的深卷积网络有效地分类目标的成果上。相比于之前的成果，Fast R-CNN采用了多项创新提高训练和测试速度来提高检测精度。Fast R-CNN训练非常深的VGG16网络比R-CNN快9倍，测试时间快213倍，并在PASCAL VOC上得到更高的精度。与SPPnet相比，fast R">
 <meta name="twitter:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/1.png">
 
@@ -139,7 +139,7 @@
 
 
 
-  <title>论文翻译Fast R-CNN | anonymous sss</title>
+  <title>📜论文翻译 Fast R-CNN | anonymous sss</title>
   
 
 
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">论文翻译Fast R-CNN</h1>
+          <h1 class="post-title" itemprop="name headline">📜论文翻译 Fast R-CNN</h1>
         
 
         <div class="post-meta">
@@ -361,19 +361,30 @@
 <p>我们提出了一种更有效的训练方法，利用训练期间的特征共享。在Fast RCNN网络训练中，随机梯度下降（SGD）的小批量是被分层采样的，首先采样N个图像，然后从每个图像采样R/N个 RoI。关键的是，来自同一图像的RoI在向前和向后传播中共享计算和内存。减小N，就减少了小批量的计算。例如，当N=2和R=128时，得到的训练方案比从128幅不同的图采样一个RoI（即R-CNN和SPPnet的策略）快64倍。</p>
 <p>这个策略的一个令人担心的问题是它可能导致训练收敛变慢，因为来自相同图像的RoI是相关的。这个问题似乎在实际情况下并不存在，当N=2和R=128时，我们使用比R-CNN更少的SGD迭代就获得了良好的结果。</p>
 <p>除了分层采样，Fast R-CNN使用了一个精细的训练过程，在微调阶段联合优化Softmax分类器和检测框回归，而不是分别在三个独立的阶段训练softmax分类器，SVM和回归器<sup>9 11</sup>。 下面将详细描述该过程（损失，小批量采样策略，通过RoI池化层的反向传播和SGD超参数）。</p>
-<p><strong>多任务损失</strong>。Fast R-CNN网络具有两个同级输出层。 第一个输出在K+1个类别上的离散概率分布（每个RoI），$p=(p_0,…,p_K)$。 通常，通过全连接层的K+1个输出上的Softmax来计算p。第二个输出层输出检测框回归偏移,$t^k=(t^k_x,t^k_y,t^k_w,t^k_h)$，对于由k索引的K个类别中的每一个。 我们使用<sup>3</sup>中给出的$t^k$的参数化，其中$t^k$指定相对于候选框的尺度不变转换和对数空间高度/宽度移位。<br>每个训练的RoI用类真值u和检测框回归目标真值v标记。我们对每个标记的RoI使用多任务损失L以联合训练分类和检测框回归：<br>$$L(p,u,t^u,v)=L_{cls}(p,u)+λ[u≥1]L_{loc}(t^u,v)   (1)$$<br>其中$L_{cls}(p,u)=-logp_u$，是类真值u的log损失。<br>对于类真值u，第二个损失$L_{loc}$是定义在检测框回归目标真值元组$u,v=(v_x,v_y,v_w,v_h)$和预测元组$tu=(t^u_x,t^u_y,t^u_w,t^u_h)$上的损失。 Iverson括号指示函数[u≥1]当u≥1的时候为值1，否则为0。按照惯例，背景类标记为u=0。对于背景RoI，没有检测框真值的概念，因此$L_{loc}$被忽略。对于检测框回归，我们使用损失<br>$$L_{loc}(t^u,v)=∑_{i∈{x,y,w,h}}smoothL_1(t^u_i-v_i)(2)$$<br>其中：<br>$$<br>smooth_{L_1}(x)=<br>\begin{cases}<br>0.5x^2,if|x|&lt;1 \<br>|x|-0.5, otherwise\<br>\end{cases}<br>(3)<br>$$<br>是鲁棒的L1损失，对于异常值比在R-CNN和SPPnet中使用的L2损失更不敏感。当回归目标无界时，具有L2损失的训练可能需要仔细调整学习速率，以防止爆炸梯度。公式(3)消除了这种灵敏度。</p>
+<p><strong>多任务损失</strong>。Fast R-CNN网络具有两个同级输出层。 第一个输出在K+1个类别上的离散概率分布（每个RoI），$p=(p_0,…,p_K)$。 通常，通过全连接层的K+1个输出上的Softmax来计算p。第二个输出层输出检测框回归偏移,$t^k=(t^k_x,t^k_y,t^k_w,t^k_h)$，对于由k索引的K个类别中的每一个。 我们使用<sup>3</sup>中给出的$t^k$的参数化，其中$t^k$指定相对于候选框的尺度不变转换和对数空间高度/宽度移位。<br>每个训练的RoI用类真值u和检测框回归目标真值v标记。我们对每个标记的RoI使用多任务损失L以联合训练分类和检测框回归： </p>
+<script type="math/tex; mode=display">L(p,u,t^u,v)=L_{cls}(p,u)+λ[u≥1]L_{loc}(t^u,v)   (1)</script><p>其中$L_{cls}(p,u)=-logp_u$，是类真值u的log损失。<br>对于类真值u，第二个损失$L_{loc}$是定义在检测框回归目标真值元组$u,v=(v_x,v_y,v_w,v_h)$和预测元组$tu=(t^u_x,t^u_y,t^u_w,t^u_h)$上的损失。 Iverson括号指示函数[u≥1]当u≥1的时候为值1，否则为0。按照惯例，背景类标记为u=0。对于背景RoI，没有检测框真值的概念，因此$L_{loc}$被忽略。对于检测框回归，我们使用损失 </p>
+<script type="math/tex; mode=display">L_{loc}(t^u,v)=∑_{i∈{x,y,w,h}}smoothL_1(t^u_i-v_i)(2)</script><p>其中： </p>
+<script type="math/tex; mode=display">
+smooth_{L_1}(x)=
+\begin{cases}
+0.5x^2,if|x|<1 \\
+|x|-0.5, otherwise\\
+\end{cases}
+(3)</script><p>是鲁棒的L1损失，对于异常值比在R-CNN和SPPnet中使用的L2损失更不敏感。当回归目标无界时，具有L2损失的训练可能需要仔细调整学习速率，以防止爆炸梯度。公式(3)消除了这种灵敏度。</p>
 <p>公式(1)中的超参数λ控制两个任务损失之间的平衡。我们将回归目标真值$v_i$归一化为具有零均值和单位方差。所有实验都使用λ=1。</p>
 <p>我们注意到<sup>10</sup>使用相关损失来训练一个类别无关的目标候选网络。 与我们的方法不同的是<sup>10</sup>倡导一个分离定位和分类的双网络系统。OverFeat<sup>4</sup>，R-CNN<sup>3</sup>和SPPnet<sup>5</sup>也训练分类器和检测框定位器，但是这些方法使用逐级训练，这对于Fast RCNN来说不是最好的选择。</p>
 <p><strong>小批量采样</strong>。在微调期间，每个SGD的小批量由N=2个图像构成，均匀地随机选择（如通常的做法，我们实际上迭代数据集的排列）。 我们使用大小为R=128的小批量，从每个图像采样64个RoI。 如在<sup>3</sup>中，我们从候选框中获取25％的RoI，这些候选框与检测框真值的IoU至少为0.5。 这些RoI只包括用前景对象类标记的样本，即u≥1。 剩余的RoI从候选框中采样，该候选框与检测框真值的最大IoU在区间[0.1,0.5)<sup>5</sup>。 这些是背景样本，并用u=0标记。0.1的阈值下限似乎充当难负样本重训练的启发式算法<sup>11</sup>。 在训练期间，图像以概率0.5水平翻转。不使用其他数据增强。<br><strong>通过RoI池化层的反向传播</strong>。反向传播通过RoI池化层。为了清楚起见，我们假设每个小批量(N=1)只有一个图像，扩展到N&gt;1是显而易见的，因为前向传播独立地处理所有图像。</p>
 <p>令xi∈ℝ是到RoI池化层的第i个激活输入，并且令$y_{rj}$是来自第r个RoI层的第j个输出。RoI池化层计算$y_{rj}=x_{i<em>(r,j)}$，其中$y_{rj}=x_{i</em>(r,j)}=argmax_{i’∈R(r,j)}x_{i’}$。$R(r,j)$是输出单元$y_rj$最大池化的子窗口中的输入的索引集合。单个$x_i$可以被分配给几个不同的输出$y_{rj}$。</p>
-<p>RoI池化层反向传播函数通过遵循argmax switches来计算关于每个输入变量$x_i$的损失函数的偏导数：<br>$$\frac{\partial L}{\partial x_i} = Σ<em>{r}Σ</em>{j}[i=i^*(r,j)]\frac{\partial L}{\partial y_{rj}}(4)$$<br>换句话说，对于每个小批量RoI r和对于每个池化输出单元$y_{rj}$，如果i是$y_{rj}$通过最大池化选择的argmax，则将这个偏导数$\frac{\partial L}{\partial y_{rj}}$积累下来。在反向传播中，偏导数$\frac{\partial L}{\partial y_{rj}}$已经由RoI池化层顶部的层的反向传播函数计算。</p>
+<p>RoI池化层反向传播函数通过遵循argmax switches来计算关于每个输入变量$x_i$的损失函数的偏导数： </p>
+<script type="math/tex; mode=display">\frac{\partial L}{\partial x_i} = Σ_{r}Σ_{j}[i=i^*(r,j)]\frac{\partial L}{\partial y_{rj}}(4)</script><p>换句话说，对于每个小批量RoI r和对于每个池化输出单元$y_{rj}$，如果i是$y_{rj}$通过最大池化选择的argmax，则将这个偏导数$\frac{\partial L}{\partial y_{rj}}$积累下来。在反向传播中，偏导数$\frac{\partial L}{\partial y_{rj}}$已经由RoI池化层顶部的层的反向传播函数计算。</p>
 <p><strong>SGD超参数</strong>。用于Softmax分类和检测框回归的全连接层的权重分别使用具有方差0.01和0.001的零均值高斯分布初始化。偏置初始化为0。所有层的权重学习率为1倍的全局学习率，偏置为2倍的全局学习率，全局学习率为0.001。 当对VOC07或VOC12 trainval训练时，我们运行SGD进行30k次小批量迭代，然后将学习率降低到0.0001，再训练10k次迭代。当我们训练更大的数据集，我们运行SGD更多的迭代，如下文所述。 使用0.9的动量和0.0005的参数衰减（权重和偏置）。</p>
 <h3 id="尺度不变性"><a href="#尺度不变性" class="headerlink" title="尺度不变性"></a>尺度不变性</h3><p>我们探索两种实现尺度不变对象检测的方法：（1）通过“brute force”学习和（2）通过使用图像金字塔。 这些策略遵循<sup>5</sup>中的两种方法。 在“brute force”方法中，在训练和测试期间以预定义的像素大小处理每个图像。网络必须直接从训练数据学习尺度不变性目标检测。</p>
 <p>相反，多尺度方法通过图像金字塔向网络提供近似尺度不变性。 在测试时，图像金字塔用于大致缩放-规范化每个候选框。 在多尺度训练期间，我们在每次图像采样时随机采样金字塔尺度，遵循<sup>5</sup>，作为数据增强的形式。由于GPU内存限制，我们只对较小的网络进行多尺度训练。</p>
 <h2 id="Fast-R-CNN检测"><a href="#Fast-R-CNN检测" class="headerlink" title="Fast R-CNN检测"></a>Fast R-CNN检测</h2><p>一旦Fast R-CNN网络被微调完毕，检测相当于运行前向传播（假设候选框是预先计算的）。网络将图像（或图像金字塔，编码为图像列表）和待计算概率的R个候选框的列表作为输入。在测试的时候，R通常在2000左右，虽然我们将考虑将它变大（约45k）的情况。当使用图像金字塔时，每个RoI被缩放，使其最接近<sup>5</sup>中的$224^2$个像素。</p>
 <p>对于每个测试的RoI r，正向传播输出类别后验概率分布p和相对于r的预测的检测框框偏移集合（K个类别中的每一个获得其自己的精细检测框预测）。我们使用估计的概率$Pr(class=k|r)≜p_k$为每个对象类别k分配r的检测置信度。然后，我们使用R-CNN算法的设置和对每个类别独立执行非最大抑制<sup>3</sup>。</p>
 <h3 id="使用截断的SVD来进行更快的检测"><a href="#使用截断的SVD来进行更快的检测" class="headerlink" title="使用截断的SVD来进行更快的检测"></a>使用截断的SVD来进行更快的检测</h3><p>对于整体图像分类，与卷积层相比，计算全连接层花费的时间较小。相反，为了检测，要处理的RoI的数量很大，并且接近一半的正向传递时间用于计算全连接层（参见图2）。大的全连接层容易通过用截短的SVD压缩来加速<sup>12 13</sup>。</p>
-<p>在这种技术中，层的u×v权重矩阵W通过SVD被近似分解为：<br>$$ W≈UΣ_tV^T(5)$$<br>在这种分解中，U是一个u×t的矩阵，包括W的前t个左奇异向量，Σt是t×t对角矩阵，其包含W的前t个奇异值，并且V是v×t矩阵，包括W的前t个右奇异向量。截断SVD将参数计数从uv减少到t(u+v)个，如果t远小于min(u,v)，则SVD可能是重要的。 为了压缩网络，对应于W的单个全连接层由两个全连接层替代，在它们之间没有非线性。这些层中的第一层使用权重矩阵$Σ_tV^T$（没有偏置），并且第二层使用U（其中原始偏差与W相关联）。当RoI的数量大时，这种简单的压缩方法给出良好的加速。</p>
+<p>在这种技术中，层的u×v权重矩阵W通过SVD被近似分解为：</p>
+<script type="math/tex; mode=display">W≈UΣ_tV^T(5)</script><p>在这种分解中，U是一个u×t的矩阵，包括W的前t个左奇异向量，Σt是t×t对角矩阵，其包含W的前t个奇异值，并且V是v×t矩阵，包括W的前t个右奇异向量。截断SVD将参数计数从uv减少到t(u+v)个，如果t远小于min(u,v)，则SVD可能是重要的。 为了压缩网络，对应于W的单个全连接层由两个全连接层替代，在它们之间没有非线性。这些层中的第一层使用权重矩阵$Σ_tV^T$（没有偏置），并且第二层使用U（其中原始偏差与W相关联）。当RoI的数量大时，这种简单的压缩方法给出良好的加速。</p>
 <h2 id="主要结果"><a href="#主要结果" class="headerlink" title="主要结果"></a>主要结果</h2><p>三个主要结果支持本文的贡献：</p>
 <ul>
 <li>VOC07，2010和2012的最高的mAP。</li>
@@ -493,8 +504,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/21/rcnn_translation/" rel="next" title="论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)">
-                <i class="fa fa-chevron-left"></i> 论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)
+              <a href="/2018/07/21/rcnn_translation/" rel="next" title="📜论文翻译 Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)">
+                <i class="fa fa-chevron-left"></i> 📜论文翻译 Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)
               </a>
             
           </div>
@@ -839,6 +850,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
