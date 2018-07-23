@@ -99,7 +99,7 @@
     <link href="http://yoursite.com/2018/07/13/caffe-train-val-prototxt-solver-prototxt-deploy-prototxt/"/>
     <id>http://yoursite.com/2018/07/13/caffe-train-val-prototxt-solver-prototxt-deploy-prototxt/</id>
     <published>2018-07-13T02:38:09.000Z</published>
-    <updated>2018-07-13T03:26:51.636Z</updated>
+    <updated>2018-07-23T19:31:30.882Z</updated>
     
     <summary type="html">
     
@@ -114,11 +114,9 @@
     </summary>
     
     
-      <category term="caffe" scheme="http://yoursite.com/tags/caffe/"/>
-    
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
-      <category term="CV" scheme="http://yoursite.com/tags/CV/"/>
+      <category term="caffe" scheme="http://yoursite.com/tags/caffe/"/>
     
   </entry>
   
