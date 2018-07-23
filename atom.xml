@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-13T03:26:51.636Z</updated>
+  <updated>2018-07-23T19:25:42.868Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,111 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)</title>
+    <link href="http://yoursite.com/2018/07/24/My-New-Post/"/>
+    <id>http://yoursite.com/2018/07/24/My-New-Post/</id>
+    <published>2018-07-23T19:20:23.000Z</published>
+    <updated>2018-07-23T19:25:42.868Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;test&lt;/p&gt;
+
+        
+      
+    
+    </summary>
+    
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文翻译Faster R-CNN：利用区域提案网络实现实时目标检测</title>
+    <link href="http://yoursite.com/2018/07/24/fasterrcnn_translation/"/>
+    <id>http://yoursite.com/2018/07/24/fasterrcnn_translation/</id>
+    <published>2018-07-23T19:20:23.000Z</published>
+    <updated>2018-07-23T19:26:03.647Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;p&gt;目前最先进的目标检测网络需要先用区域提案算法推测目标位置，像SPPnet&lt;sup&gt;1&lt;/sup&gt;和Fast
+        
+      
+    
+    </summary>
+    
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文翻译Rich feature hierarchies for accurate object detection and semantic segmentation (用于精确物体定位和语义分割的丰富特征层次结构-2014)</title>
+    <link href="http://yoursite.com/2018/07/24/rcnn_translation/"/>
+    <id>http://yoursite.com/2018/07/24/rcnn_translation/</id>
+    <published>2018-07-23T19:20:23.000Z</published>
+    <updated>2018-07-23T19:26:12.668Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>论文翻译Fast R-CNN</title>
+    <link href="http://yoursite.com/2018/07/24/fastrcnn_translation/"/>
+    <id>http://yoursite.com/2018/07/24/fastrcnn_translation/</id>
+    <published>2018-07-23T19:20:23.000Z</published>
+    <updated>2018-07-23T19:26:07.517Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h2&gt;&lt;p&gt;本文提出了一种快速的基于区域的卷积网络方法（fast R-CNN）用于目标检测。Fast
+        
+      
+    
+    </summary>
+    
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
+    
+  </entry>
   
   <entry>
     <title>caffe:train_val.prototxt,solver.prototxt,deploy.prototxt</title>
