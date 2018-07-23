@@ -71,28 +71,6 @@
   </entry>
   
   <entry>
-    <title>hello_hexo!</title>
-    <link href="http://yoursite.com/2018/07/07/hello-hexo/"/>
-    <id>http://yoursite.com/2018/07/07/hello-hexo/</id>
-    <published>2018-07-07T02:27:44.000Z</published>
-    <updated>2018-07-07T02:41:20.818Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;This is my first hexo
-        
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hexo tutorial</title>
     <link href="http://yoursite.com/2018/07/07/Hexo%20tutorial/"/>
     <id>http://yoursite.com/2018/07/07/Hexo tutorial/</id>
