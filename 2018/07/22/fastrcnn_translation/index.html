@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/8.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/10.png">
-<meta property="og:updated_time" content="2018-07-23T23:22:13.777Z">
+<meta property="og:updated_time" content="2018-07-23T23:29:52.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="📜论文翻译 Fast R-CNN">
 <meta name="twitter:description" content="摘要本文提出了一种快速的基于区域的卷积网络方法（fast R-CNN）用于目标检测。Fast R-CNN建立在以前使用的深卷积网络有效地分类目标的成果上。相比于之前的成果，Fast R-CNN采用了多项创新提高训练和测试速度来提高检测精度。Fast R-CNN训练非常深的VGG16网络比R-CNN快9倍，测试时间快213倍，并在PASCAL VOC上得到更高的精度。与SPPnet相比，fast R">
@@ -347,8 +347,10 @@
 <li>比R-CNN和SPPnet具有更高的目标检测精度（mAP）。</li>
 <li>训练是使用多任务损失的单阶段训练。</li>
 <li>训练可以更新所有网络层参数。</li>
-<li>不需要磁盘空间缓存特征。<br>Fast R-CNN使用Python和C++(Caffe8)语言编写，以MIT开源许可证发布在：<a href="https://github.com/rbgirshick/fast-rcnn。" target="_blank" rel="noopener">https://github.com/rbgirshick/fast-rcnn。</a><h2 id="Fast-R-CNN架构与训练"><a href="#Fast-R-CNN架构与训练" class="headerlink" title="Fast R-CNN架构与训练"></a>Fast R-CNN架构与训练</h2>Fast R-CNN的架构如下图（图1）所示：<br><img src="/2018/07/22/fastrcnn_translation/1.png" alt="图１"><br>图1. Fast R-CNN架构。输入图像和多个感兴趣区域（RoI）被输入到全卷积网络中。每个RoI被池化到固定大小的特征图中，然后通过全连接层（FC）映射到特征向量。网络对于每个RoI具有两个输出向量：Softmax概率和每类检测框回归偏移量。该架构是使用多任务丢失端到端训练的。</li>
+<li>不需要磁盘空间缓存特征。</li>
 </ul>
+<p>Fast R-CNN使用Python和C++(Caffe8)语言编写，以MIT开源许可证发布在：<a href="https://github.com/rbgirshick/fast-rcnn。" target="_blank" rel="noopener">https://github.com/rbgirshick/fast-rcnn。</a></p>
+<h2 id="Fast-R-CNN架构与训练"><a href="#Fast-R-CNN架构与训练" class="headerlink" title="Fast R-CNN架构与训练"></a>Fast R-CNN架构与训练</h2><p>Fast R-CNN的架构如下图（图1）所示：<br><img src="/2018/07/22/fastrcnn_translation/1.png" alt="图１"><br>图1. Fast R-CNN架构。输入图像和多个感兴趣区域（RoI）被输入到全卷积网络中。每个RoI被池化到固定大小的特征图中，然后通过全连接层（FC）映射到特征向量。网络对于每个RoI具有两个输出向量：Softmax概率和每类检测框回归偏移量。该架构是使用多任务丢失端到端训练的。</p>
 <p>Fast R-CNN网络将整个图像和一组候选框作为输入。网络首先使用几个卷积层（conv）和最大池化层来处理整个图像，以产生卷积特征图。然后，对于每个候选框，RoI池化层从特征图中提取固定长度的特征向量。每个特征向量被送入一系列全连接（fc）层中，其最终分支成两个同级输出层 ：一个输出K<br>个类别加上1个背景类别的Softmax概率估计，另一个为K个类别的每一个类别输出四个实数值。每组4个值表示K个类别的一个类别的检测框位置的修正。</p>
 <h3 id="RoI池化层"><a href="#RoI池化层" class="headerlink" title="RoI池化层"></a>RoI池化层</h3><p>RoI池化层使用最大池化将任何有效的RoI内的特征转换成具有H×W（例如，7×7）的固定空间范围的小特征图，其中H和W是层的超参数，独立于任何特定的RoI。在本文中，RoI是卷积特征图中的一个矩形窗口。 每个RoI由指定其左上角(r,c)及其高度和宽度(h,w)的四元组(r,c,h,w)定义。</p>
 <p>RoI最大池化通过将大小为h×w的RoI窗口分割成H×W个网格，子窗口大小约为h/H×w/W，然后对每个子窗口执行最大池化，并将输出合并到相应的输出网格单元中。同标准的最大池化一样，池化操作独立应用于每个特征图通道。RoI层只是SPPnets<sup>5</sup>中使用的空间金字塔池层的特殊情况，其只有一个金字塔层。 我们使用<sup>5</sup>中给出的池化子窗口计算方法。</p>
