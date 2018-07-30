@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-30T04:25:12.255Z</updated>
+  <updated>2018-07-30T04:30:32.758Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>选择性搜索（selective search）</title>
     <link href="http://yoursite.com/2018/07/30/selective_search/"/>
     <id>http://yoursite.com/2018/07/30/selective_search/</id>
-    <published>2018-07-30T04:25:54.306Z</published>
-    <updated>2018-07-30T04:25:12.255Z</updated>
+    <published>2018-07-30T12:28:44.000Z</published>
+    <updated>2018-07-30T04:30:32.758Z</updated>
     
     <summary type="html">
     
@@ -29,12 +29,14 @@
       
         
         
-          &lt;h1 id=&quot;选择性搜索（selective-search）&quot;&gt;&lt;a href=&quot;#选择性搜索（selective-search）&quot; class=&quot;headerlink&quot; title=&quot;选择性搜索（selective search）&quot;&gt;&lt;/a&gt;选择性搜索（selective
+          &lt;p&gt;该文翻译整理自：&lt;a href=&quot;https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;selective
         
       
     
     </summary>
     
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   

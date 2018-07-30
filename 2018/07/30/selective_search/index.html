@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="deep learning," />
 
 
 
@@ -81,12 +81,13 @@
 
 
 
-<meta name="description" content="选择性搜索（selective search）该文翻译整理自：selective search for object detection（c++ / python） 一、目标检测 VS 目标识别目标识别（objec recognition）是指明一幅输入图像中包含那类目标。其输入为一幅图像，输出是该图像中的目标属于哪个类别（class probability）。而目标检测（object detec">
+<meta name="description" content="该文翻译整理自：selective search for object detection（c++ / python） 一、目标检测 VS 目标识别目标识别（objec recognition）是指明一幅输入图像中包含那类目标。其输入为一幅图像，输出是该图像中的目标属于哪个类别（class probability）。而目标检测（object detection）除了要告诉输入图像中包含了哪类目标外">
+<meta name="keywords" content="deep learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="anonymous sss">
+<meta property="og:title" content="选择性搜索（selective search）">
 <meta property="og:url" content="http://yoursite.com/2018/07/30/selective_search/index.html">
 <meta property="og:site_name" content="anonymous sss">
-<meta property="og:description" content="选择性搜索（selective search）该文翻译整理自：selective search for object detection（c++ / python） 一、目标检测 VS 目标识别目标识别（objec recognition）是指明一幅输入图像中包含那类目标。其输入为一幅图像，输出是该图像中的目标属于哪个类别（class probability）。而目标检测（object detec">
+<meta property="og:description" content="该文翻译整理自：selective search for object detection（c++ / python） 一、目标检测 VS 目标识别目标识别（objec recognition）是指明一幅输入图像中包含那类目标。其输入为一幅图像，输出是该图像中的目标属于哪个类别（class probability）。而目标检测（object detection）除了要告诉输入图像中包含了哪类目标外">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/07/30/selective_search/2.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/30/selective_search/3.png">
@@ -99,10 +100,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/30/selective_search/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/30/selective_search/11.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/30/selective_search/12.png">
-<meta property="og:updated_time" content="2018-07-30T04:25:12.255Z">
+<meta property="og:updated_time" content="2018-07-30T04:30:32.758Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="anonymous sss">
-<meta name="twitter:description" content="选择性搜索（selective search）该文翻译整理自：selective search for object detection（c++ / python） 一、目标检测 VS 目标识别目标识别（objec recognition）是指明一幅输入图像中包含那类目标。其输入为一幅图像，输出是该图像中的目标属于哪个类别（class probability）。而目标检测（object detec">
+<meta name="twitter:title" content="选择性搜索（selective search）">
+<meta name="twitter:description" content="该文翻译整理自：selective search for object detection（c++ / python） 一、目标检测 VS 目标识别目标识别（objec recognition）是指明一幅输入图像中包含那类目标。其输入为一幅图像，输出是该图像中的目标属于哪个类别（class probability）。而目标检测（object detection）除了要告诉输入图像中包含了哪类目标外">
 <meta name="twitter:image" content="http://yoursite.com/2018/07/30/selective_search/2.png">
 
 
@@ -139,7 +140,7 @@
 
 
 
-  <title> | anonymous sss</title>
+  <title>选择性搜索（selective search） | anonymous sss</title>
   
 
 
@@ -283,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">选择性搜索（selective search）</h1>
         
 
         <div class="post-meta">
@@ -295,7 +296,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T12:25:54+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T20:28:44+08:00">
                 2018-07-30
               </time>
             
@@ -333,7 +334,7 @@
       
 
       
-        <h1 id="选择性搜索（selective-search）"><a href="#选择性搜索（selective-search）" class="headerlink" title="选择性搜索（selective search）"></a>选择性搜索（selective search）</h1><p>该文翻译整理自：selective search for object detection（c++ / python）</p>
+        <p>该文翻译整理自：<a href="https://www.learnopencv.com/selective-search-for-object-detection-cpp-python/" target="_blank" rel="noopener">selective search for object detection（c++ / python）</a></p>
 <h2 id="一、目标检测-VS-目标识别"><a href="#一、目标检测-VS-目标识别" class="headerlink" title="一、目标检测 VS 目标识别"></a>一、目标检测 VS 目标识别</h2><p>目标识别（objec recognition）是指明一幅输入图像中包含那类目标。其输入为一幅图像，输出是该图像中的目标属于哪个类别（class probability）。而目标检测（object detection）除了要告诉输入图像中包含了哪类目标外，还要框出该目标的具体位置（bounding boxes）。</p>
 <p>在目标检测时，为了定位到目标的具体位置，通常会把图像分成许多子块（sub-regions / patches），然后把子块作为输入，送到目标识别的模型中。<strong>分子块的最直接方法是滑动窗口法（sliding window approach）</strong>。滑动窗口的方法就是按照子块的大小在整幅图像上穷举所有子图像块。这种方法产生的数据量想想都头大。<strong>和滑动窗口法相对的是另外一类基于区域（region proposal）的方法</strong>。selective search就是其中之一！</p>
 <h2 id="二、region-proposal-方法"><a href="#二、region-proposal-方法" class="headerlink" title="二、region proposal 方法"></a>二、region proposal 方法</h2><p>当前的区域候选方法有如下几种：</p>
@@ -392,6 +393,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          
+        </div>
       
 
       
@@ -544,7 +551,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择性搜索（selective-search）"><span class="nav-number">1.</span> <span class="nav-text">选择性搜索（selective search）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、目标检测-VS-目标识别"><span class="nav-number">1.1.</span> <span class="nav-text">一、目标检测 VS 目标识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、region-proposal-方法"><span class="nav-number">1.2.</span> <span class="nav-text">二、region proposal 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、selective-search算法"><span class="nav-number">1.3.</span> <span class="nav-text">三、selective search算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、相似度计算"><span class="nav-number">1.4.</span> <span class="nav-text">四、相似度计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色相似度（color-similarity）"><span class="nav-number">1.4.1.</span> <span class="nav-text">颜色相似度（color similarity）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纹理相似度（texture-similarity）"><span class="nav-number">1.4.2.</span> <span class="nav-text">纹理相似度（texture similarity）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尺寸相似度（size-similarity）"><span class="nav-number">1.4.3.</span> <span class="nav-text">尺寸相似度（size similarity）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#形状相容相似度（shape-compatibility-measure）"><span class="nav-number">1.4.4.</span> <span class="nav-text">形状相容相似度（shape compatibility measure）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终的相似度"><span class="nav-number">1.4.5.</span> <span class="nav-text">最终的相似度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、OpenCV-3-3-实现了selective-search"><span class="nav-number">1.5.</span> <span class="nav-text">五、OpenCV 3.3 实现了selective search</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、目标检测-VS-目标识别"><span class="nav-number">1.</span> <span class="nav-text">一、目标检测 VS 目标识别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、region-proposal-方法"><span class="nav-number">2.</span> <span class="nav-text">二、region proposal 方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、selective-search算法"><span class="nav-number">3.</span> <span class="nav-text">三、selective search算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、相似度计算"><span class="nav-number">4.</span> <span class="nav-text">四、相似度计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色相似度（color-similarity）"><span class="nav-number">4.1.</span> <span class="nav-text">颜色相似度（color similarity）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纹理相似度（texture-similarity）"><span class="nav-number">4.2.</span> <span class="nav-text">纹理相似度（texture similarity）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尺寸相似度（size-similarity）"><span class="nav-number">4.3.</span> <span class="nav-text">尺寸相似度（size similarity）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#形状相容相似度（shape-compatibility-measure）"><span class="nav-number">4.4.</span> <span class="nav-text">形状相容相似度（shape compatibility measure）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终的相似度"><span class="nav-number">4.5.</span> <span class="nav-text">最终的相似度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、OpenCV-3-3-实现了selective-search"><span class="nav-number">5.</span> <span class="nav-text">五、OpenCV 3.3 实现了selective search</span></a></li></ol></div>
             
 
           </div>
