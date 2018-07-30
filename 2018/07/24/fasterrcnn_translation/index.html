@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/24/fasterrcnn_translation/16.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/24/fasterrcnn_translation/17.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/24/fasterrcnn_translation/18.png">
-<meta property="og:updated_time" content="2018-07-30T19:29:31.908Z">
+<meta property="og:updated_time" content="2018-07-30T19:36:13.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="📜论文翻译 Faster R-CNN：利用区域提案网络实现实时目标检测">
 <meta name="twitter:description" content="摘要目前最先进的目标检测网络需要先用区域提案算法推测目标位置，像SPPnet1和Fast R-CNN2这些网络已经减少了检测网络的运行时间，这时计算区域提案就成了瓶颈问题。本文中，我们介绍一种区域提案网络（Region Proposal Network, RPN），它和检测网络共享全图的卷积特征，使得区域提案几乎不花时间。RPN是一个全卷积网络，在每个位置同时预测目标边界和objectness得分">
@@ -374,12 +374,11 @@
 <p>由于这种基于锚点的多尺度设计，我们可以简单地使用单尺度图像上的卷积特征，这也是Fast R-CNN检测器2所完成的。多尺度锚点的设计是共享特征的关键组件，无需额外的成本来缩放尺寸。</p>
 <h4 id="3-1-2损失函数"><a href="#3-1-2损失函数" class="headerlink" title="3.1.2损失函数"></a>3.1.2损失函数</h4><p>为了训练RPN，<strong>我们给每个anchor分配一个二值的标签（是不是目标）</strong>。我们分配正标签给两类anchor：（i）与检测框真值IoU最高的anchor（ii）与任意检测框真值有大于0.7的IoU交叠的anchor。注意到一个检测框真值可能分配正标签给多个anchor。通常第二个条件足以确定正样本。但是我们仍然采取第一个条件，因为在极少数情况下，第二个条件可能没有发现正样本。我们分配负标签给与所有检测框真值的IoU比率都低于0.3的anchor。非正非负的anchor对训练目标没有任何作用。</p>
 <p>有了这些定义，我们遵循Fast R-CNN<sup>5</sup>中的多任务损失，最小化目标函数。我们对一个图像的损失函数定义为</p>
-<script type="math/tex; mode=display">L(\{pi\},\{ti\})=\frac{1}{N_{cls}}∑_iL_{cls}(p_i,p^*_i) + λ\frac{1}{N_{reg}}∑_ip^*_iL_{reg}(t_i,t^*_i)(1)</script><p>这里，i是一个mini-batch中anchor的索引。$p_i$是anchori是目标的预测概率,如果anchor为正，检测框真值标签$p^<em>_i$就是1，如果anchor为负，$p^</em>_i$就是0。$t_i$是一个向量，表示预测的检测框的4个参数化坐标，$t_i^{\ast}$是与正anchor对应的检测框真值的坐标向量。分类损失<script type="math/tex">L_{cls}</script>是两个类别（目标vs.非目标）的log对数损失。对于回归损失，我们用<script type="math/tex">L_{reg}(t_i, t_i^{\ast}) = R(t_i - t_i^{\ast})</script>来计算，其中$R$是2中定义的鲁棒的损失函数（smooth L1）。$p^<em>_iL_{reg}$这一项意味着只有正anchor(P∗i=1)才有回归损失，其他情况($p^</em>_i=0$)就没有。cls层和reg层的输出分别由$\{p_i\}$和\{t_i\}组成。</p>
-<p>这两项分别由$N_{cls}$和$N_{reg}$以及一个权重平衡参数λ归一化。目前的实现中（参见公开的代码），公式(1)中的cls项的归一化值为mini-batch的大小（即$N_{cls}=256$），reg项的归一化值为anchor位置的数量（即$N_{reg}$约为2,400），默认情况下，λ=10，这样cls和reg项差不多是等权重的。我们通过实验显示，结果对λ在很大范围内的值不敏感（表9）。<strong>我们还留意到，上述的归一化其实不需要，可以简化</strong>。<br>对于回归，我们依照<sup>5</sup>采用4个坐标：<br>$t_x=(x-x_a)/w_a, t_y = (y-y_a)/h_a, $</p>
+<script type="math/tex; mode=display">L(\{pi\},\{ti\})=\frac{1}{N_{cls}}∑_iL_{cls}(p_i,p^*_i) + λ\frac{1}{N_{reg}}∑_ip^*_iL_{reg}(t_i,t^*_i)(1)</script><p>这里，i是一个mini-batch中anchor的索引。$p_i$是anchori是目标的预测概率,如果anchor为正，检测框真值标签<script type="math/tex">p^*_i</script>就是1，如果anchor为负，<script type="math/tex">p^*_i</script>就是0。$t_i$是一个向量，表示预测的检测框的4个参数化坐标，$t_i^{\ast}$是与正anchor对应的检测框真值的坐标向量。分类损失<script type="math/tex">L_{cls}</script>是两个类别（目标vs.非目标）的log对数损失。对于回归损失，我们用<script type="math/tex">L_{reg}(t_i, t_i^{\ast}) = R(t_i - t_i^{\ast})</script>来计算，其中$R$是<sup>2</sup>中定义的鲁棒的损失函数（smooth L1）。<script type="math/tex">p^*_iL_{reg}</script>这一项意味着只有正anchor(<script type="math/tex">p^*_i</script>)才有回归损失，其他情况(<script type="math/tex">p^*_i=0</script>)就没有。cls层和reg层的输出分别由<script type="math/tex">\{p_i\}</script>和<script type="math/tex">\{t_i\}</script>组成。</p>
+<p>这两项分别由$N_{cls}$和$N_{reg}$以及一个权重平衡参数λ归一化。目前的实现中（参见公开的代码），公式(1)中的cls项的归一化值为mini-batch的大小（即$N_{cls}=256$），reg项的归一化值为anchor位置的数量（即$N_{reg}$约为2,400），默认情况下，λ=10，这样cls和reg项差不多是等权重的。我们通过实验显示，结果对λ在很大范围内的值不敏感（表9）。<strong>我们还留意到，上述的归一化其实不需要，可以简化</strong>。</p>
+<p>对于回归，我们依照<sup>5</sup>采用4个坐标：<br>$t_x=(x-x_a)/w_a, t_y = (y-y_a)/h_a, $</p>
 <p>$t_w=log(x/w_a), t_h = log(h/h_a), $</p>
-<p>$t^<em>_x=(x^</em>-x_a)/w_a, t^<em>_y = (y^</em>-y_a)/h_a, $</p>
-<p>$t^<em>_w=log(w^</em>/w_a), t^<em>_h = log(h^</em>/h_a),$</p>
-<p>x，y，w，h指的是包围盒中心的坐标、宽、高。变量$x,x_a,x^*$分别指预测的检测框、anchor box、检测框真值（就像y，w，h一样）。可以理解为从anchor box到附近的检测框真值的检测框回归。</p>
+<script type="math/tex; mode=display">t^*_x=(x^*-x_a)/w_a, t^*_y = (y^*-y_a)/h_a,</script><script type="math/tex; mode=display">t^*_w=log(w^*/w_a), t^*_h = log(h^*/h_a),</script><p>x，y，w，h指的是包围盒中心的坐标、宽、高。变量$x,x_a,x^*$分别指预测的检测框、anchor box、检测框真值（就像y，w，h一样）。可以理解为从anchor box到附近的检测框真值的检测框回归。</p>
 <p>无论如何，我们用了一种与之前的基于RoI的方法<sup>1 2</sup>不同的方法实现了检测框回归算法。在<sup>1 2</sup>中，检测框回归是通过从任意大小的区域中池化特征实现的，回归权重是所有不同大小的区域共享的。<strong>在我们的方法中</strong>，用于回归的特征在特征映射中具有相同的空间大小(3×3)。考虑到各种不同的大小，需要学习一系列$k$个检测框回归量。<strong>每一个回归量对应于一个尺度和长宽比，$k$个回归量之间不共享权重</strong>。因此，即使特征具有固定的尺寸/尺度，预测各种尺寸的检测框仍然是可能的，这要归功于anchor的设计。</p>
 <h4 id="3-1-3训练RPN"><a href="#3-1-3训练RPN" class="headerlink" title="3.1.3训练RPN"></a>3.1.3训练RPN</h4><p>RPN可以通过反向传播和随机梯度下降(SGD)<sup>35</sup>端到端训练。我们遵循<sup>2</sup>中的“image-centric”采样策略训练这个网络。每个mini-batch由包含了许多正负anchor样本的单个图像组成。我们可以优化所有anchor的损失函数，但是这会偏向于负样本，因为它们是主要的。因此，我们随机地在一个图像中采样256个anchor，计算mini-batch的损失函数，其中采样的正负anchor的比例最多是1:1。如果一个图像中的正样本数小于128，我们就用负样本填补这个mini-batch。</p>
 <p>我们通过从零均值标准差为0.01的高斯分布中获取的权重来随机初始化所有新层（最后一个卷积层其后的层），所有其他层（即共享的卷积层）是通过对ImageNet分类<sup>36</sup>预训练的模型来初始化的，这也是标准惯例<sup>5</sup>。我们调整ZF网络的所有层，VGG网络的conv3_1以上的层，以节约内存<sup>2</sup>。我们在PASCAL数据集上对于60k个mini-batch用的学习率为0.001，对于下一20k个mini-batch用的学习率是0.0001。动量是0.9，权重衰减为0.0005<sup>37</sup>。我们的实现使用了Caffe<sup>38</sup>。</p>

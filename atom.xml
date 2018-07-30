@@ -45,7 +45,7 @@
     <link href="http://yoursite.com/2018/07/24/fasterrcnn_translation/"/>
     <id>http://yoursite.com/2018/07/24/fasterrcnn_translation/</id>
     <published>2018-07-24T03:01:23.000Z</published>
-    <updated>2018-07-30T19:29:31.908Z</updated>
+    <updated>2018-07-30T19:36:13.600Z</updated>
     
     <summary type="html">
     
@@ -138,9 +138,9 @@
     </summary>
     
     
-      <category term="caffe" scheme="http://yoursite.com/tags/caffe/"/>
-    
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+      <category term="caffe" scheme="http://yoursite.com/tags/caffe/"/>
     
   </entry>
   
