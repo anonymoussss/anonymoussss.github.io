@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/8.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/9.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/22/fastrcnn_translation/10.png">
-<meta property="og:updated_time" content="2018-07-23T23:29:52.404Z">
+<meta property="og:updated_time" content="2018-07-30T19:11:23.669Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="📜论文翻译 Fast R-CNN">
 <meta name="twitter:description" content="摘要本文提出了一种快速的基于区域的卷积网络方法（fast R-CNN）用于目标检测。Fast R-CNN建立在以前使用的深卷积网络有效地分类目标的成果上。相比于之前的成果，Fast R-CNN采用了多项创新提高训练和测试速度来提高检测精度。Fast R-CNN训练非常深的VGG16网络比R-CNN快9倍，测试时间快213倍，并在PASCAL VOC上得到更高的精度。与SPPnet相比，fast R">
@@ -381,7 +381,7 @@ smooth_{L_1}(x)=
 <p>公式(1)中的超参数λ控制两个任务损失之间的平衡。我们将回归目标真值$v_i$归一化为具有零均值和单位方差。所有实验都使用λ=1。</p>
 <p>我们注意到<sup>10</sup>使用相关损失来训练一个类别无关的目标候选网络。 与我们的方法不同的是<sup>10</sup>倡导一个分离定位和分类的双网络系统。OverFeat<sup>4</sup>，R-CNN<sup>3</sup>和SPPnet<sup>5</sup>也训练分类器和检测框定位器，但是这些方法使用逐级训练，这对于Fast RCNN来说不是最好的选择。</p>
 <p><strong>小批量采样</strong>。在微调期间，每个SGD的小批量由N=2个图像构成，均匀地随机选择（如通常的做法，我们实际上迭代数据集的排列）。 我们使用大小为R=128的小批量，从每个图像采样64个RoI。 如在<sup>3</sup>中，我们从候选框中获取25％的RoI，这些候选框与检测框真值的IoU至少为0.5。 这些RoI只包括用前景对象类标记的样本，即u≥1。 剩余的RoI从候选框中采样，该候选框与检测框真值的最大IoU在区间[0.1,0.5)<sup>5</sup>。 这些是背景样本，并用u=0标记。0.1的阈值下限似乎充当难负样本重训练的启发式算法<sup>11</sup>。 在训练期间，图像以概率0.5水平翻转。不使用其他数据增强。<br><strong>通过RoI池化层的反向传播</strong>。反向传播通过RoI池化层。为了清楚起见，我们假设每个小批量(N=1)只有一个图像，扩展到N&gt;1是显而易见的，因为前向传播独立地处理所有图像。</p>
-<p>令xi∈ℝ是到RoI池化层的第i个激活输入，并且令$y_{rj}$是来自第r个RoI层的第j个输出。RoI池化层计算$y_{rj}=x_{i<em>(r,j)}$，其中$y_{rj}=x_{i</em>(r,j)}=argmax_{i’∈R(r,j)}x_{i’}$。$R(r,j)$是输出单元$y_rj$最大池化的子窗口中的输入的索引集合。单个$x_i$可以被分配给几个不同的输出$y_{rj}$。</p>
+<p>令xi∈ℝ是到RoI池化层的第i个激活输入，并且令$y_{rj}$是来自第r个RoI层的第j个输出。RoI池化层计算$ y_{rj}=x_{i<em>(r,j)} $，其中$y_{rj}=x_{i</em>(r,j)}=argmax_{i’∈R(r,j)}x_{i’}$。$R(r,j)$是输出单元$y_rj$最大池化的子窗口中的输入的索引集合。单个$x_i$可以被分配给几个不同的输出$y_{rj}$。</p>
 <p>RoI池化层反向传播函数通过遵循argmax switches来计算关于每个输入变量$x_i$的损失函数的偏导数： </p>
 <script type="math/tex; mode=display">\frac{\partial L}{\partial x_i} = Σ_{r}Σ_{j}[i=i^*(r,j)]\frac{\partial L}{\partial y_{rj}}(4)</script><p>换句话说，对于每个小批量RoI r和对于每个池化输出单元$y_{rj}$，如果i是$y_{rj}$通过最大池化选择的argmax，则将这个偏导数$\frac{\partial L}{\partial y_{rj}}$积累下来。在反向传播中，偏导数$\frac{\partial L}{\partial y_{rj}}$已经由RoI池化层顶部的层的反向传播函数计算。</p>
 <p><strong>SGD超参数</strong>。用于Softmax分类和检测框回归的全连接层的权重分别使用具有方差0.01和0.001的零均值高斯分布初始化。偏置初始化为0。所有层的权重学习率为1倍的全局学习率，偏置为2倍的全局学习率，全局学习率为0.001。 当对VOC07或VOC12 trainval训练时，我们运行SGD进行30k次小批量迭代，然后将学习率降低到0.0001，再训练10k次迭代。当我们训练更大的数据集，我们运行SGD更多的迭代，如下文所述。 使用0.9的动量和0.0005的参数衰减（权重和偏置）。</p>
