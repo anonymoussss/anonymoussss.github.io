@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/07/31/2x2-Tables-SN-SP-PPV-NPV-OR-RR/3.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/31/2x2-Tables-SN-SP-PPV-NPV-OR-RR/4.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/31/2x2-Tables-SN-SP-PPV-NPV-OR-RR/5.png">
-<meta property="og:updated_time" content="2018-07-31T05:33:09.808Z">
+<meta property="og:updated_time" content="2018-07-31T18:32:37.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2x2 Tables (SN, SP, PPV, NPV, OR, RR)">
 <meta name="twitter:description" content="这篇文章是我做毕设的时候发现的，也是我最初学到的医学领域上的一些指标，遂记录下来以防忘记，如不慎侵权请联系我。This page was found by me during my senior year, in case I forget,  I reproduce this article now. If there is an infringement, please contact wi">
@@ -380,13 +380,14 @@
 </ul>
 <h2 id="precision-recall-curve-PRC"><a href="#precision-recall-curve-PRC" class="headerlink" title="precision recall curve (PRC)"></a>precision recall curve (PRC)</h2><p>Curve based on precision-recall pairs for different probability thresholds,compared with the ROC curves,<strong> it is more suitable for the condition where the number of positive and negative samples is uneven extremely</strong></p>
 <ul>
-<li>Y axis: precision  (TP / (FP + FP))</li>
+<li>Y axis: precision  (TP / (TP + FP))</li>
 <li>X axis: recall  (same with the Sensitivity)</li>
 <li>More the area under the curve,  better the test</li>
 <li><strong>The curve passes  through ( 0, 1 ) point by default</strong></li>
 </ul>
 <p><img src="/2018/07/31/2x2-Tables-SN-SP-PPV-NPV-OR-RR/4.png" alt="图4"></p>
-<h2 id="Odds-Ratio-Relative-Risk-Attributable-Risk"><a href="#Odds-Ratio-Relative-Risk-Attributable-Risk" class="headerlink" title="Odds Ratio, Relative Risk, Attributable Risk"></a>Odds Ratio, Relative Risk, Attributable Risk</h2><p>These measures describe the relationship between a risk factor and a disease<br><img src="/2018/07/31/2x2-Tables-SN-SP-PPV-NPV-OR-RR/5.png" alt="图5"></p>
+<h2 id="f1-score"><a href="#f1-score" class="headerlink" title="f1-score"></a>f1-score</h2><p>F1 score (F1 Score) is an index used to measure the effect of the two classification models in statistics. It also takes into account the <strong>precision</strong> and <strong>recall</strong> of classification models. The F1 score can be regarded as a weighted average of the accuracy and recall of the model. Its maximum value is 1 and the minimum value is 0. </p>
+<script type="math/tex; mode=display">precision =  \frac {TP} {TP + FP}</script><script type="math/tex; mode=display">recall = \frac {TP}{TP + FN}</script><script type="math/tex; mode=display">F1 = 2 · \frac{precision · recall}{precison + recall}</script><h2 id="Odds-Ratio-Relative-Risk-Attributable-Risk"><a href="#Odds-Ratio-Relative-Risk-Attributable-Risk" class="headerlink" title="Odds Ratio, Relative Risk, Attributable Risk"></a>Odds Ratio, Relative Risk, Attributable Risk</h2><p>These measures describe the relationship between a risk factor and a disease<br><img src="/2018/07/31/2x2-Tables-SN-SP-PPV-NPV-OR-RR/5.png" alt="图5"></p>
 <ul>
 <li><p>Odds Ratio (OR) </p>
 <ul>
@@ -585,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Index"><span class="nav-number">1.</span> <span class="nav-text">Index</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sensitivity-Specificity-PPV-NPV"><span class="nav-number">1.1.</span> <span class="nav-text">Sensitivity, Specificity, PPV, NPV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Receiver-operating-characteristic-ROC"><span class="nav-number">1.2.</span> <span class="nav-text">Receiver operating characteristic (ROC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#free-receiver-operating-characteristic-FROC"><span class="nav-number">1.3.</span> <span class="nav-text">free receiver operating characteristic (FROC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#precision-recall-curve-PRC"><span class="nav-number">1.4.</span> <span class="nav-text">precision recall curve (PRC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Odds-Ratio-Relative-Risk-Attributable-Risk"><span class="nav-number">1.5.</span> <span class="nav-text">Odds Ratio, Relative Risk, Attributable Risk</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Index"><span class="nav-number">1.</span> <span class="nav-text">Index</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sensitivity-Specificity-PPV-NPV"><span class="nav-number">1.1.</span> <span class="nav-text">Sensitivity, Specificity, PPV, NPV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Receiver-operating-characteristic-ROC"><span class="nav-number">1.2.</span> <span class="nav-text">Receiver operating characteristic (ROC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#free-receiver-operating-characteristic-FROC"><span class="nav-number">1.3.</span> <span class="nav-text">free receiver operating characteristic (FROC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#precision-recall-curve-PRC"><span class="nav-number">1.4.</span> <span class="nav-text">precision recall curve (PRC)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#f1-score"><span class="nav-number">1.5.</span> <span class="nav-text">f1-score</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Odds-Ratio-Relative-Risk-Attributable-Risk"><span class="nav-number">1.6.</span> <span class="nav-text">Odds Ratio, Relative Risk, Attributable Risk</span></a></li></ol></li></ol></div>
             
 
           </div>
