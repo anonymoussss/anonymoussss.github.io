@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-30T04:32:29.607Z</updated>
+  <updated>2018-07-31T05:28:46.664Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2x2 Tables (SN, SP, PPV, NPV, OR, RR)</title>
+    <link href="http://yoursite.com/2018/07/31/2x2-Tables-SN-SP-PPV-NPV-OR-RR/"/>
+    <id>http://yoursite.com/2018/07/31/2x2-Tables-SN-SP-PPV-NPV-OR-RR/</id>
+    <published>2018-07-31T04:22:27.000Z</published>
+    <updated>2018-07-31T05:28:46.664Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;这篇文章是我做毕设的时候发现的，也是我最初学到的医学领域上的一些指标，遂记录下来以防忘记，如不慎侵权请联系我。&lt;br&gt;This page was found by me during my senior year, in case I
+        
+      
+    
+    </summary>
+    
+    
+      <category term="knowledge" scheme="http://yoursite.com/tags/knowledge/"/>
+    
+  </entry>
   
   <entry>
     <title>选择性搜索（selective search）</title>
