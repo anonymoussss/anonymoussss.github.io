@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-07-31T18:32:37.674Z</updated>
+  <updated>2018-08-01T18:06:17.633Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>YOLO（You Only Look Once）v1笔记</title>
+    <link href="http://yoursite.com/2018/08/02/YOLO_v1/"/>
+    <id>http://yoursite.com/2018/08/02/YOLO_v1/</id>
+    <published>2018-08-02T02:06:44.000Z</published>
+    <updated>2018-08-01T18:06:17.633Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;这篇博客主要介绍下CVPR 2016 YOLO v1算法（CVPR2016的文章）。YOLO是比较流行的object detection算法，速度快且结构简单，这里算法部分介绍的是YOLO的第一个版本，而现在YOLO的官网上已经有YOLO
+        
+      
+    
+    </summary>
+    
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+  </entry>
   
   <entry>
     <title>2x2 Tables (SN, SP, PPV, NPV, OR, RR)</title>
@@ -166,30 +190,6 @@
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="caffe" scheme="http://yoursite.com/tags/caffe/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>YOLO（You Only Look Once）v1笔记</title>
-    <link href="http://yoursite.com/2018/07/08/YOLO_v1/"/>
-    <id>http://yoursite.com/2018/07/08/YOLO_v1/</id>
-    <published>2018-07-08T12:38:44.000Z</published>
-    <updated>2018-08-01T18:02:08.582Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;这篇博客主要介绍下CVPR 2016 YOLO v1算法（CVPR2016的文章）。YOLO是比较流行的object detection算法，速度快且结构简单，这里算法部分介绍的是YOLO的第一个版本，而现在YOLO的官网上已经有YOLO
-        
-      
-    
-    </summary>
-    
-    
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   
