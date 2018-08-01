@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/02/YOLO_v1/3.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/YOLO_v1/4.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/YOLO_v1/5.png">
-<meta property="og:updated_time" content="2018-08-01T18:23:55.962Z">
+<meta property="og:updated_time" content="2018-08-01T18:39:29.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YOLO（You Only Look Once）v1笔记">
 <meta name="twitter:description" content="这篇博客主要介绍下CVPR 2016 YOLO v1算法（CVPR2016的文章）。YOLO是比较流行的object detection算法，速度快且结构简单，这里算法部分介绍的是YOLO的第一个版本，而现在YOLO的官网上已经有YOLO v2和v3的实现了。 论文名称：You only look once unified real-time object detection论文链接：https:">
@@ -347,7 +347,7 @@
 <p>另外每个格子都预测C个假定类别的概率。在本文中作者取S=7，B=2，C=20（因为PASCAL VOC有20个类别），所以最后有<strong>7<em>7</em>30</strong>个tensor，应注意<strong>每个bounding box都对应一个confidence score</strong>。如下图2。</p>
 <p><img src="/2018/08/02/YOLO_v1/2.png" alt="图2"></p>
 <p>这里confidence的计算公式如下：</p>
-<script type="math/tex; mode=display">Pr(object)  \times IOU_{pred}^{truth}</script><p>这里如果grid cell里面没有object，则$Pr(object) = 0$ , 如果grid cell里面有object，则$Pr(object) = 1$ 。因此如果grid cell里面没有object，confidence就是0，如果有，则confidence score等于预测的box和ground truth的IOU值，见上面公式。<br>那么如何判断一个grid cell中是否包含object呢？答案是：<strong>如果一个object的ground truth的中心点坐标在一个grid cell中，那么这个grid cell就是包含这个object</strong>，也就是说这个object的预测就由该grid cell负责。<br>除此之外，不管B boxes有几个，每个grid cell都固定预测C个类别概率，表示一个grid cell在<strong>包含object的条件下</strong>属于某个类别的概率。</p>
+<script type="math/tex; mode=display">Pr(object) \times IOU_{pred}^{truth}</script><p>这里如果grid cell里面没有object，则$Pr(object) = 0$ , 如果grid cell里面有object，则$Pr(object) = 1$ 。因此如果grid cell里面没有object，confidence就是0，如果有，则confidence score等于预测的box和ground truth的IOU值，见上面公式。<br>那么如何判断一个grid cell中是否包含object呢？答案是：<strong>如果一个object的ground truth的中心点坐标在一个grid cell中，那么这个grid cell就是包含这个object</strong>，也就是说这个object的预测就由该grid cell负责。<br>除此之外，不管B boxes有几个，每个grid cell都固定预测C个类别概率，表示一个grid cell在<strong>包含object的条件下</strong>属于某个类别的概率。</p>
 <p><strong>在测试的时候</strong>，我们将在grid cell在有object的条件下的条件概率，和这个grid cell中所有box的置信度confidence predictions相乘，得到每个box中每一类的置信分数。公式如下：</p>
 <script type="math/tex; mode=display">Pr(Class_i | Object) * Pr(Object) * IOU_{pred}^{truth} = Pr(Class_i) * IOU_{pred}^{truth}</script><p>这个分数计算保证了每个box中物体类别的预测概率和box本身是否贴合物体两方面的表现。</p>
 <p>这个乘法具体实现如下图：每个bounding box的confidence和每个类别的score相乘，得到每个bounding box属于哪一类的confidence score。</p>
