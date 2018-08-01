@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/02/YOLO_v1/3.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/YOLO_v1/4.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/02/YOLO_v1/5.png">
-<meta property="og:updated_time" content="2018-08-01T18:06:17.633Z">
+<meta property="og:updated_time" content="2018-08-01T18:23:55.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YOLO（You Only Look Once）v1笔记">
 <meta name="twitter:description" content="这篇博客主要介绍下CVPR 2016 YOLO v1算法（CVPR2016的文章）。YOLO是比较流行的object detection算法，速度快且结构简单，这里算法部分介绍的是YOLO的第一个版本，而现在YOLO的官网上已经有YOLO v2和v3的实现了。 论文名称：You only look once unified real-time object detection论文链接：https:">
@@ -353,7 +353,17 @@
 <p>这个乘法具体实现如下图：每个bounding box的confidence和每个类别的score相乘，得到每个bounding box属于哪一类的confidence score。</p>
 <p><img src="/2018/08/02/YOLO_v1/3.png" alt="图3"><br>即得到每个bounding box属于哪一类的confidence score。也就是说最后会得到20<em>（7</em>7<em>2）=20</em>98的score矩阵，括号里面是bounding box的数量，20代表类别。接下来的操作都是20个类别轮流进行：在某个类别中（即矩阵的某一行），将得分少于阈值（0.2）的设置为0，然后再按得分从高到低排序。最后再用NMS算法去掉重复率较大的bounding box（NMS:针对某一类别，选择得分最大的bounding box，然后计算它和其它bounding box的IOU值，如果IOU大于0.5，说明重复率较大，该得分设为0，如果不大于0.5，则不改；这样一轮后，再选择剩下的score里面最大的那个bounding box，然后计算该bounding box和其它bounding box的IOU，重复以上过程直到最后）。最后每个bounding box的20个score取最大的score，如果这个score大于0，那么这个bounding box就是这个socre对应的类别（矩阵的行），如果小于0，说明这个bounding box里面没有物体，跳过即可。<strong>具体细节参考最后的参考资料1。</strong></p>
 <p><strong>训练用的网络方面</strong>受GoogLeNet的启发，但不像googlenet一样使用inception model，仅叠加1<em>1的降维层和3</em>3的卷积层，卷积层主要用来提取特征，全连接层主要用来预测类别概率和坐标。最后的输出是7<em>7</em>30，这个30前面也解释过了，7<em>7是grid cell的数量。中间特征提取可能不同，重点在于最后一层的输出是7</em>7*30。网络结构如下图所示：<br><img src="/2018/08/02/YOLO_v1/4.png" alt="图4"></p>
-<h2 id="细节方面"><a href="#细节方面" class="headerlink" title="细节方面"></a>细节方面</h2><p>1、作者先在ImageNet数据集上预训练网络，而且网络只采用fig3的前面20个卷积层，输入是224<em>224大小的图像。然后在检测的时候再加上随机初始化的4个卷积层和2个全连接层，同时输入改为更高分辨率的448</em>448。2、Relu层改为leaky relu，即当x&lt;0时，激活值是0.1*x，而不是传统的0。</p>
+<h2 id="训练策略"><a href="#训练策略" class="headerlink" title="训练策略"></a>训练策略</h2><p>该论文的训练策略，总体给人的感觉：比较复杂，技巧性比较强。可以看得出作者为了提升性能花了不少功夫。</p>
+<ul>
+<li>首先利用 ImageNet 的数据集 Pretrain 卷积层。使用上述网络中的前 20 个卷积层，外加一个全连接层，作为 Pretrain 的网络，训练大约一周的时间，使得在 ImageNet 2012 的验证数据集 Top-5 的准确度达到 88%，这个结果跟 GoogleNet 的效果相当。</li>
+<li>将 Pretrain 的结果应用到 Detection 中，将剩下的 4 个卷积层及 2 个全连接成加入到 Pretrain 的网络中。同时为了获取更精细化的结果，将输入图像的分辨率由 224<em>224 提升到 448</em>448。</li>
+<li>将所有的预测结果都归一化到 0~1, 使用 Leaky RELU 作为激活函数。</li>
+<li>对比 localization error 和 classification error，加大 localization 的权重</li>
+<li>在 Pascal VOC 2007 和 2012 上训练 135 个 epochs， Batchsize 设置为 64， Momentum 为 0.9， Decay 为 0.0005.</li>
+<li>在第一个 epoch 中 学习率是逐渐从 $10^{-3}$ 增大到$10^{-2}$ ,然后保持学习率为$10^{-2}$,一直训练到 75个 epochs，然后学习率为$10^{-3}$ ,训练 30 个 epochs, 最后学习率为$10^{-4}$ 训练 30 个 epochs。</li>
+<li>为了防止过拟合，在第一个全连接层后面接了一个 ratio=0.5 的 Dropout 层。并且对原始图像做了一些随机采样和缩放，甚至对调节图像的在 HSV 空间的饱和度。</li>
+<li>训练过程中，小的 Box 对位置回归错误比大的 Box 更加敏感,由于坐标都已经归一化到 0~1，之间，作者使用了一个 trick，不是直接使用平方，而是使用它们的平方根。</li>
+</ul>
 <h2 id="损失函数方面"><a href="#损失函数方面" class="headerlink" title="损失函数方面"></a>损失函数方面</h2><p>作者采用sum-squared error的方式把localization error（bounding box的坐标误差）和classificaton error整合在一起。但是如果二者的权值一致，容易导致模型不稳定，训练发散。因为很多grid cell是不包含物体的，这样的话很多grid cell的confidence score为0。所以采用设置不同权重方式来解决，一方面提高localization error的权重，另一方面降低没有object的box的confidence loss权值，loss权重分别是5和0.5。而对于包含object的box的confidence loss权值还是原来的1。详见下面的原文解释和loos function函数（这里latex写起来太长了，就直接截图了）。<br><img src="/2018/08/02/YOLO_v1/5.png" alt="图5"></p>
 <p>在loss function中，前面两行表示localization error(即坐标误差)，第一行是box中心坐标(x,y)的预测，第二行为宽和高的预测。这里注意用宽和高的开根号代替原来的宽和高，这样做主要为了增加模型的稳定性，因为相同的宽和高误差对于小的目标精度影响比大的目标要大。举个例子，原来w=10，h=20，预测出来w=8，h=22，跟原来w=3，h=5，预测出来w1，h=7相比，其实前者的误差要比后者小，但是如果不加开根号，那么损失都是一样：4+4=8，但是加上根号后，变成0.15和0.7（这一段是从这篇博客中看来得<a href="https://blog.csdn.net/u014380165/article/details/72616238）。" target="_blank" rel="noopener">https://blog.csdn.net/u014380165/article/details/72616238）。</a> </p>
 <p>第三、四行表示bounding box的confidence损失，就像前面所说的，分成grid cell包含与不包含object两种情况。这里注意下因为每个grid cell包含两个bounding box，所以只有当ground truth 和该网格中的某个bounding box的IOU值最大的时候，才计算这项。<br>第五行表示预测类别的误差，注意前面的系数只有在grid cell包含object的时候才为1。<br>所以具体实现的时候是什么样的过程呢？<br>训练的时候：输入N个图像，每个图像包含M个objec，每个object包含4个坐标（x，y，w，h）和1个label。然后通过网络得到7<em>7</em>30大小的三维矩阵。每个1<em>30的向量前5个元素表示第一个bounding box的4个坐标和1个confidence，第6到10元素表示第二个bounding box的4个坐标和1个confidence。最后20个表示这个grid cell所属类别。注意这30个都是预测的结果。然后就可以计算损失函数的第一、二 、五行。至于第二三行，confidence可以根据ground truth和预测的bounding box计算出的IOU和是否有object的0,1值相乘得到。真实的confidence是0或1值，即有object则为1，没有object则为0。 这样就能计算出loss function的值了。<br>测试的时候：输入一张图像，跑到网络的末端得到7</em>7*30的三维矩阵，这里虽然没有计算IOU，但是由训练好的权重已经直接计算出了bounding box的confidence。然后再跟预测的类别概率相乘就得到每个bounding box属于哪一类的概率。</p>
@@ -532,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO-v1-算法内容"><span class="nav-number">1.</span> <span class="nav-text">YOLO v1 算法内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO算法的优点"><span class="nav-number">2.</span> <span class="nav-text">YOLO算法的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细节方面"><span class="nav-number">3.</span> <span class="nav-text">细节方面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#损失函数方面"><span class="nav-number">4.</span> <span class="nav-text">损失函数方面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO算法的缺点"><span class="nav-number">5.</span> <span class="nav-text">YOLO算法的缺点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO-v1-算法内容"><span class="nav-number">1.</span> <span class="nav-text">YOLO v1 算法内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO算法的优点"><span class="nav-number">2.</span> <span class="nav-text">YOLO算法的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练策略"><span class="nav-number">3.</span> <span class="nav-text">训练策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#损失函数方面"><span class="nav-number">4.</span> <span class="nav-text">损失函数方面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YOLO算法的缺点"><span class="nav-number">5.</span> <span class="nav-text">YOLO算法的缺点</span></a></li></ol></div>
             
 
           </div>
