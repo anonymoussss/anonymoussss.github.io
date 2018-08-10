@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-01T18:44:16.871Z</updated>
+  <updated>2018-08-10T11:45:57.767Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2018/08/10/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E5%92%8C%E5%BE%AE%E8%B0%83%E6%B7%B1%E5%BA%A6%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    <id>http://yoursite.com/2018/08/10/迁移学习和微调深度卷积神经网络/</id>
+    <published>2018-08-10T03:52:57.921Z</published>
+    <updated>2018-08-10T11:45:57.767Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;迁移学习和微调深度卷积神经网络&quot;&gt;&lt;a href=&quot;#迁移学习和微调深度卷积神经网络&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2018/08/10/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E7%BB%BC%E8%BF%B0/"/>
+    <id>http://yoursite.com/2018/08/10/目标检测综述/</id>
+    <published>2018-08-10T03:52:57.887Z</published>
+    <updated>2018-08-07T08:27:31.770Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;目标检测综述-转&quot;&gt;&lt;a href=&quot;#目标检测综述-转&quot; class=&quot;headerlink&quot; title=&quot;目标检测综述(转)&quot;&gt;&lt;/a&gt;目标检测综述(转)&lt;/h1&gt;&lt;p&gt;转自Ronald的知乎专栏(2017.12.31)：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>YOLO（You Only Look Once）v1笔记</title>
