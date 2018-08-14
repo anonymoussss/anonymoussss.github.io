@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-10T03:59:59.036Z</updated>
+  <updated>2018-08-14T17:44:58.200Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>YOLO V2 (YOLO9000：Better,Faster,Stronger) 论文学习</title>
+    <link href="http://yoursite.com/2018/08/14/YOLO_v2/"/>
+    <id>http://yoursite.com/2018/08/14/YOLO_v2/</id>
+    <published>2018-08-14T02:40:27.000Z</published>
+    <updated>2018-08-14T17:44:58.200Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;YOLO-V2&quot;&gt;&lt;a href=&quot;#YOLO-V2&quot; class=&quot;headerlink&quot; title=&quot;YOLO V2&quot;&gt;&lt;/a&gt;YOLO V2&lt;/h1&gt;&lt;p&gt;YOLO
+        
+      
+    
+    </summary>
+    
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
+    
+      <category term="translation" scheme="http://yoursite.com/tags/translation/"/>
+    
+  </entry>
   
   <entry>
     <title>迁移学习和微调深度卷积神经网络</title>
