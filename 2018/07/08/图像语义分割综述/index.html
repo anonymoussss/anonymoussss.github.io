@@ -81,25 +81,26 @@
 
 
 
-<meta name="description" content="1 研究历史patch classification最初的图像语义分割方法，费时费力 FCN(2014)FCN 使用反卷积（与upsamping的区别是可学习）取代简单的线性插值算法进行上采样 SegNet (2015)SegNet使用upsampling的方法将编码过程中 pool 的位置记下来在 uppooling 是使用该信息进行pooling  U-Net (2015)在前者的基础上进行的">
+<meta name="description" content="1 研究历史patch classification最初的图像语义分割方法，费时费力 FCN(2014)FCN 使用反卷积（与upsamping的区别是可学习）取代简单的线性插值算法进行上采样  SegNet (2015)SegNet使用upsampling的方法将编码过程中 pool 的位置记下来在 uppooling 是使用该信息进行pooling  U-Net (2015)在前者的基础上进行">
 <meta name="keywords" content="deep learning,semantic segmentation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图像语义分割综述">
 <meta property="og:url" content="http://yoursite.com/2018/07/08/图像语义分割综述/index.html">
 <meta property="og:site_name" content="anonymoussss&#39;s Blog">
-<meta property="og:description" content="1 研究历史patch classification最初的图像语义分割方法，费时费力 FCN(2014)FCN 使用反卷积（与upsamping的区别是可学习）取代简单的线性插值算法进行上采样 SegNet (2015)SegNet使用upsampling的方法将编码过程中 pool 的位置记下来在 uppooling 是使用该信息进行pooling  U-Net (2015)在前者的基础上进行的">
+<meta property="og:description" content="1 研究历史patch classification最初的图像语义分割方法，费时费力 FCN(2014)FCN 使用反卷积（与upsamping的区别是可学习）取代简单的线性插值算法进行上采样  SegNet (2015)SegNet使用upsampling的方法将编码过程中 pool 的位置记下来在 uppooling 是使用该信息进行pooling  U-Net (2015)在前者的基础上进行">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1531051570272.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1531051603979.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1531051779512.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1531052099645.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1531052303920.png">
 <meta property="og:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1530779278021.png">
-<meta property="og:updated_time" content="2018-07-08T12:55:24.064Z">
+<meta property="og:updated_time" content="2019-10-30T09:26:22.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像语义分割综述">
-<meta name="twitter:description" content="1 研究历史patch classification最初的图像语义分割方法，费时费力 FCN(2014)FCN 使用反卷积（与upsamping的区别是可学习）取代简单的线性插值算法进行上采样 SegNet (2015)SegNet使用upsampling的方法将编码过程中 pool 的位置记下来在 uppooling 是使用该信息进行pooling  U-Net (2015)在前者的基础上进行的">
-<meta name="twitter:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1531051570272.png">
+<meta name="twitter:description" content="1 研究历史patch classification最初的图像语义分割方法，费时费力 FCN(2014)FCN 使用反卷积（与upsamping的区别是可学习）取代简单的线性插值算法进行上采样  SegNet (2015)SegNet使用upsampling的方法将编码过程中 pool 的位置记下来在 uppooling 是使用该信息进行pooling  U-Net (2015)在前者的基础上进行">
+<meta name="twitter:image" content="http://yoursite.com/2018/07/08/图像语义分割综述/1.png">
 
 
 
@@ -336,6 +337,7 @@
       
         <h2 id="1-研究历史"><a href="#1-研究历史" class="headerlink" title="1 研究历史"></a>1 研究历史</h2><h3 id="patch-classification"><a href="#patch-classification" class="headerlink" title="patch classification"></a>patch classification</h3><p>最初的图像语义分割方法，费时费力</p>
 <h3 id="FCN-2014"><a href="#FCN-2014" class="headerlink" title="FCN(2014)"></a>FCN(2014)</h3><p>FCN 使用反卷积（与upsamping的区别是可学习）取代简单的线性插值算法进行上采样</p>
+<p><img src="/2018/07/08/图像语义分割综述/1.png" alt="FCN"></p>
 <h3 id="SegNet-2015"><a href="#SegNet-2015" class="headerlink" title="SegNet (2015)"></a>SegNet (2015)</h3><p>SegNet使用upsampling的方法将编码过程中 pool 的位置记下来在 uppooling 是使用该信息进行pooling </p>
 <h3 id="U-Net-2015"><a href="#U-Net-2015" class="headerlink" title="U-Net (2015)"></a>U-Net (2015)</h3><p>在前者的基础上进行的改进，将编码器的每层结果拼接到译码器中得到更好的结果</p>
 <h3 id="DeepLab-v1-2015"><a href="#DeepLab-v1-2015" class="headerlink" title="DeepLab v1(2015)"></a>DeepLab v1(2015)</h3><p><strong>特点</strong>：</p>
@@ -408,6 +410,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/01/Hexo tutorial/" rel="next" title="Hexo tutorial">
+                <i class="fa fa-chevron-left"></i> Hexo tutorial
+              </a>
             
           </div>
 
@@ -498,7 +504,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
