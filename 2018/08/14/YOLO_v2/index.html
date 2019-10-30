@@ -81,13 +81,13 @@
 
 
 
-<meta name="description" content="YOLO V2YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。  受到Faster RCNN方法的启发，引入了anchor。同时使用了K-Means方法，对anchor数量进行了讨论，在精度和速度之间做出折中； 修改了网络结构，去掉了全连接层，改成了全卷积结构； 引入了Word">
+<meta name="description" content="YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。  受到Faster RCNN方法的启发，引入了anchor。同时使用了K-Means方法，对anchor数量进行了讨论，在精度和速度之间做出折中； 修改了网络结构，去掉了全连接层，改成了全卷积结构； 引入了WordTree结构，">
 <meta name="keywords" content="deep learning,translation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="YOLO V2 (YOLO9000：Better,Faster,Stronger) 论文学习">
 <meta property="og:url" content="http://yoursite.com/2018/08/14/YOLO_v2/index.html">
 <meta property="og:site_name" content="anonymoussss&#39;s Blog">
-<meta property="og:description" content="YOLO V2YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。  受到Faster RCNN方法的启发，引入了anchor。同时使用了K-Means方法，对anchor数量进行了讨论，在精度和速度之间做出折中； 修改了网络结构，去掉了全连接层，改成了全卷积结构； 引入了Word">
+<meta property="og:description" content="YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。  受到Faster RCNN方法的启发，引入了anchor。同时使用了K-Means方法，对anchor数量进行了讨论，在精度和速度之间做出折中； 修改了网络结构，去掉了全连接层，改成了全卷积结构； 引入了WordTree结构，">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/08/14/YOLO_v2/1.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/14/YOLO_v2/2.png">
@@ -97,10 +97,10 @@
 <meta property="og:image" content="http://yoursite.com/2018/08/14/YOLO_v2/6.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/14/YOLO_v2/7.png">
 <meta property="og:image" content="http://yoursite.com/2018/08/14/YOLO_v2/8.png">
-<meta property="og:updated_time" content="2018-08-14T17:44:58.200Z">
+<meta property="og:updated_time" content="2018-08-14T17:46:29.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="YOLO V2 (YOLO9000：Better,Faster,Stronger) 论文学习">
-<meta name="twitter:description" content="YOLO V2YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。  受到Faster RCNN方法的启发，引入了anchor。同时使用了K-Means方法，对anchor数量进行了讨论，在精度和速度之间做出折中； 修改了网络结构，去掉了全连接层，改成了全卷积结构； 引入了Word">
+<meta name="twitter:description" content="YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。  受到Faster RCNN方法的启发，引入了anchor。同时使用了K-Means方法，对anchor数量进行了讨论，在精度和速度之间做出折中； 修改了网络结构，去掉了全连接层，改成了全卷积结构； 引入了WordTree结构，">
 <meta name="twitter:image" content="http://yoursite.com/2018/08/14/YOLO_v2/1.png">
 
 
@@ -336,7 +336,7 @@
       
 
       
-        <h1 id="YOLO-V2"><a href="#YOLO-V2" class="headerlink" title="YOLO V2"></a>YOLO V2</h1><p>YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。</p>
+        <p>YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。</p>
 <ul>
 <li>受到Faster RCNN方法的启发，引入了anchor。同时使用了K-Means方法，对anchor数量进行了讨论，在精度和速度之间做出折中；</li>
 <li>修改了网络结构，去掉了全连接层，改成了全卷积结构；</li>
@@ -434,6 +434,10 @@ Pr(object) * IOU(b,object) = σ(t_o)
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/01/20/Hexo tutorial/" rel="prev" title="Hexo tutorial">
+                Hexo tutorial <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -513,7 +517,7 @@ Pr(object) * IOU(b,object) = σ(t_o)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -566,7 +570,7 @@ Pr(object) * IOU(b,object) = σ(t_o)
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#YOLO-V2"><span class="nav-number">1.</span> <span class="nav-text">YOLO V2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Better"><span class="nav-number">1.2.</span> <span class="nav-text">Better</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#改进1：引入BN层（Batch-Normalization）"><span class="nav-number">1.2.1.</span> <span class="nav-text">改进1：引入BN层（Batch Normalization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进2：高分辨率分类器（High-Resolution-Classifier）"><span class="nav-number">1.2.2.</span> <span class="nav-text">改进2：高分辨率分类器（High Resolution Classifier）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进3：引入Anchor-Box"><span class="nav-number">1.2.3.</span> <span class="nav-text">改进3：引入Anchor Box</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进4：Dimension-Cluster"><span class="nav-number">1.2.4.</span> <span class="nav-text">改进4：Dimension Cluster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进5：直接位置预测（Direct-Location-Prediction）"><span class="nav-number">1.2.5.</span> <span class="nav-text">改进5：直接位置预测（Direct Location Prediction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进6：Fine-Gained-Features"><span class="nav-number">1.2.6.</span> <span class="nav-text">改进6：Fine-Gained Features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进7：多尺度训练（Multi-Scale-Training）"><span class="nav-number">1.2.7.</span> <span class="nav-text">改进7：多尺度训练（Multi-Scale Training）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster"><span class="nav-number">1.3.</span> <span class="nav-text">Faster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练过程"><span class="nav-number">1.4.</span> <span class="nav-text">训练过程</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Better"><span class="nav-number">2.</span> <span class="nav-text">Better</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#改进1：引入BN层（Batch-Normalization）"><span class="nav-number">2.1.</span> <span class="nav-text">改进1：引入BN层（Batch Normalization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进2：高分辨率分类器（High-Resolution-Classifier）"><span class="nav-number">2.2.</span> <span class="nav-text">改进2：高分辨率分类器（High Resolution Classifier）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进3：引入Anchor-Box"><span class="nav-number">2.3.</span> <span class="nav-text">改进3：引入Anchor Box</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进4：Dimension-Cluster"><span class="nav-number">2.4.</span> <span class="nav-text">改进4：Dimension Cluster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进5：直接位置预测（Direct-Location-Prediction）"><span class="nav-number">2.5.</span> <span class="nav-text">改进5：直接位置预测（Direct Location Prediction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进6：Fine-Gained-Features"><span class="nav-number">2.6.</span> <span class="nav-text">改进6：Fine-Gained Features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进7：多尺度训练（Multi-Scale-Training）"><span class="nav-number">2.7.</span> <span class="nav-text">改进7：多尺度训练（Multi-Scale Training）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Faster"><span class="nav-number">3.</span> <span class="nav-text">Faster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练过程"><span class="nav-number">4.</span> <span class="nav-text">训练过程</span></a></li></ol></div>
             
 
           </div>
@@ -586,7 +590,7 @@ Pr(object) * IOU(b,object) = σ(t_o)
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

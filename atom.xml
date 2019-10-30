@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-14T17:44:58.200Z</updated>
+  <updated>2019-10-30T09:20:38.191Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>YOLO V2 (YOLO9000：Better,Faster,Stronger) 论文学习</title>
-    <link href="http://yoursite.com/2018/08/14/YOLO_v2/"/>
-    <id>http://yoursite.com/2018/08/14/YOLO_v2/</id>
-    <published>2018-08-14T02:40:27.000Z</published>
-    <updated>2018-08-14T17:44:58.200Z</updated>
+    <title>My New Post</title>
+    <link href="http://yoursite.com/2019/10/30/My-New-Post/"/>
+    <id>http://yoursite.com/2019/10/30/My-New-Post/</id>
+    <published>2019-10-30T09:19:10.000Z</published>
+    <updated>2019-10-30T09:20:38.191Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,54 @@
       
         
         
-          &lt;h1 id=&quot;YOLO-V2&quot;&gt;&lt;a href=&quot;#YOLO-V2&quot; class=&quot;headerlink&quot; title=&quot;YOLO V2&quot;&gt;&lt;/a&gt;YOLO V2&lt;/h1&gt;&lt;p&gt;YOLO
+          &lt;p&gt;正文&lt;/p&gt;
+
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo tutorial</title>
+    <link href="http://yoursite.com/2019/01/20/Hexo%20tutorial/"/>
+    <id>http://yoursite.com/2019/01/20/Hexo tutorial/</id>
+    <published>2019-01-20T02:53:16.925Z</published>
+    <updated>2018-07-07T02:44:33.017Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>YOLO V2 (YOLO9000：Better,Faster,Stronger) 论文学习</title>
+    <link href="http://yoursite.com/2018/08/14/YOLO_v2/"/>
+    <id>http://yoursite.com/2018/08/14/YOLO_v2/</id>
+    <published>2018-08-14T02:40:27.000Z</published>
+    <updated>2018-08-14T17:46:29.692Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;YOLO V2是原作者在V1基础上做出改进后提出的。为了达到题目中所称的Better，Faster，Stronger的目标，主要改进点如下。当然，具体内容还是要深入论文。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;受到Faster
         
       
     
@@ -264,9 +311,9 @@
     </summary>
     
     
-      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
-    
       <category term="caffe" scheme="http://yoursite.com/tags/caffe/"/>
+    
+      <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
   </entry>
   
@@ -293,28 +340,6 @@
       <category term="deep learning" scheme="http://yoursite.com/tags/deep-learning/"/>
     
       <category term="semantic segmentation" scheme="http://yoursite.com/tags/semantic-segmentation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo tutorial</title>
-    <link href="http://yoursite.com/2018/07/07/Hexo%20tutorial/"/>
-    <id>http://yoursite.com/2018/07/07/Hexo tutorial/</id>
-    <published>2018-07-07T02:05:16.054Z</published>
-    <updated>2018-07-07T02:44:33.017Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
-        
-      
-    
-    </summary>
-    
     
   </entry>
   
